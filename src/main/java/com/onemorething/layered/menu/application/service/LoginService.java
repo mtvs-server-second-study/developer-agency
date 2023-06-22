@@ -1,4 +1,4 @@
 package com.onemorething.layered.menu.application.service;
 
-public class test {
+public class LoginService {
 }
