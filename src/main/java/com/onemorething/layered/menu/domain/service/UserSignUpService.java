@@ -1,9 +1,12 @@
 package com.onemorething.layered.menu.domain.service;
 
+import org.springframework.stereotype.Component;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.List;
 
+@Component
 public class UserSignUpService {
 
     public String validEmail(String email) {

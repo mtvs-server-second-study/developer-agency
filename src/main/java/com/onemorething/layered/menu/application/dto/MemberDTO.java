@@ -8,6 +8,9 @@ public class MemberDTO {
     private String userName;
     private String userPwd;
     private String userCheckPwd;
+
+
+
     private Date userBirth;
     private String userPhone;
     private String userTech1;
@@ -96,5 +99,20 @@ public class MemberDTO {
 
     public void setUserTech3(String userTech3) {
         this.userTech3 = userTech3;
+    }
+
+    @Override
+    public String toString() {
+        return "MemberDTO{" +
+                "userEmail='" + userEmail + '\'' +
+                ", userName='" + userName + '\'' +
+                ", userPwd='" + userPwd + '\'' +
+                ", userCheckPwd='" + userCheckPwd + '\'' +
+                ", userBirth=" + userBirth +
+                ", userPhone='" + userPhone + '\'' +
+                ", userTech1='" + userTech1 + '\'' +
+                ", userTech2='" + userTech2 + '\'' +
+                ", userTech3='" + userTech3 + '\'' +
+                '}';
     }
 }
