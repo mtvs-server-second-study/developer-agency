@@ -91,4 +91,14 @@ public class MemberDTO {
     private String UserTech2;
     private String UserTech3;
 
+    public MemberDTO() {}
+
+    public String getuserEmail() {
+        return userEmail;
+    }
+
+    public void setuserEmail(String email) {
+        this.userEmail = email;
+    }
+
 }
