@@ -5,14 +5,11 @@ public class LoginImplService {
     /* 설명. 비밀번호 재확인 로직*/
     public String signUpCheckPassward(String pwd1, String pwd2) {
 
-        String result;
+        String result = "Yes";
 
         if (!(pwd1.trim().equals(pwd2))) {
             result = "No";
-        } else {
-            result = "Yes";
         }
-
         return result;
     }
 
