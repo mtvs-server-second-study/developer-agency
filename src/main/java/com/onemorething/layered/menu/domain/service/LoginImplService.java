@@ -1,6 +1,7 @@
 package com.onemorething.layered.menu.domain.service;
 
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.List;
 
 public class LoginImplService  {
@@ -35,9 +36,20 @@ public class LoginImplService  {
         //일치하는 번호가 있을경우 for문 종료후 정상 문자열 리턴
         return "정상";
     }
-}
+  
+    public String signUpValidPwd(String userPwd) {
 
-public class LoginImplService {
+        Pattern pattern = Pattern.compile("^(?=.*[a-zA-Z])(?=.*\\d)(?=.*\\W)(?!.*[ㄱ-ㅎㅏ-ㅣ가-힣])(?!.*\\s).{6,20}$");
+        Matcher password = pattern.matcher(userPwd);
+
+        String result = "Yes";
+
+        if (!password.find()) {
+            result = "비밀번호는 최소 6자 이상 최대 20자 이하여야하며, 알파벳, 숫자, 특수문자가 포함되어야 합니다.";
+        }
+        return result;
+
+    }
 
     /* 설명. 비밀번호 재확인 로직*/
     public String signUpCheckPassward(String pwd1, String pwd2) {
