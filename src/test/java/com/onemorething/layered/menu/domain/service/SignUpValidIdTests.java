@@ -7,12 +7,12 @@ import org.junit.jupiter.api.Test;
 
 class SignUpValidIdTests {
 
-    private UserLoginService userLoginService;
+    private UserSignUpService userSignUpService;
 
     @BeforeEach
     public void setUp() {
 
-        this.userLoginService = new UserLoginService();
+        this.userSignUpService = new UserSignUpService();
     }
 
     @DisplayName("._외의 특수문자가 이메일 계정에 포함되었을때 오류가 나는지 테스트")
@@ -21,7 +21,7 @@ class SignUpValidIdTests {
 
         String str = "realid#^^@gmail.com";
 
-        String email = userLoginService.validEmail(str);
+        String email = userSignUpService.validEmail(str);
 
         Assertions.assertEquals("한글,대문자,._외 특수문자가 포함되어 있습니다.", email);
 
@@ -33,7 +33,7 @@ class SignUpValidIdTests {
 
         String str = "estaQRrt77@naver.com";
 
-        String email = userLoginService.validEmail(str);
+        String email = userSignUpService.validEmail(str);
 
         Assertions.assertEquals("한글,대문자,._외 특수문자가 포함되어 있습니다.", email);
 
@@ -44,7 +44,7 @@ class SignUpValidIdTests {
 
         String str = "ㅎㅇ@hanmail.net";
 
-        String email = userLoginService.validEmail(str);
+        String email = userSignUpService.validEmail(str);
 
         Assertions.assertEquals("한글,대문자,._외 특수문자가 포함되어 있습니다.", email);
     }
@@ -55,7 +55,7 @@ class SignUpValidIdTests {
 
         String str = null;
 
-        String email = userLoginService.validEmail(str);
+        String email = userSignUpService.validEmail(str);
 
         Assertions.assertEquals("아이디를 입력하세요.", email);
     }
@@ -66,7 +66,7 @@ class SignUpValidIdTests {
 
         String str = "qlekrjjsnbekfjdk12938475ekrngjkanwlektnglckdns178236548ekejgnddjfhfwkejgnsjksejhgb@gmail.com";
 
-        String email = userLoginService.validEmail(str);
+        String email = userSignUpService.validEmail(str);
 
         Assertions.assertEquals("길이를 초과하셨습니다.", email);
     }

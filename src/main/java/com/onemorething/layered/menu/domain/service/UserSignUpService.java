@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.List;
 
-public class UserLoginService {
+public class UserSignUpService {
 
     public String validEmail(String email) {
 

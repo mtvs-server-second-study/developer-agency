@@ -6,11 +6,11 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class SignUpValidPwdTests {
 
-    UserLoginService loginImplService;
+    UserSignUpService loginImplService;
 
     @BeforeEach
     public void setUp() {
-        this.loginImplService = new UserLoginService();
+        this.loginImplService = new UserSignUpService();
     }
     @DisplayName("비밀번호를 숫자로만 입력한 경우 테스트")
     @ParameterizedTest

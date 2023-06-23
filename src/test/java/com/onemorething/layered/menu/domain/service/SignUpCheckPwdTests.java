@@ -7,11 +7,11 @@ import org.junit.jupiter.api.Test;
 
 class SignUpCheckPwdTests {
 
-    private UserLoginService loginImplService;
+    private UserSignUpService loginImplService;
 
     @BeforeEach
     public void setUp() {
-        this.loginImplService = new UserLoginService();
+        this.loginImplService = new UserSignUpService();
     }
 
     @DisplayName("비밀번호 재확인 일치")

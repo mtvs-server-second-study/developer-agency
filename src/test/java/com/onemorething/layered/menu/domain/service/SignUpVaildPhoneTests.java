@@ -9,14 +9,14 @@ import java.util.List;
 
 public class SignUpVaildPhoneTests {
 
-    private UserLoginService loginImplService;
+    private UserSignUpService loginImplService;
     private List<String> dataPhone1;
     private List<String> dataPhone2;
 
 
     @BeforeEach
     public void setUp() {
-        this.loginImplService = new UserLoginService();
+        this.loginImplService = new UserSignUpService();
 
         this.dataPhone1 = new ArrayList<String>();
         this.dataPhone2 = new ArrayList<String>();
