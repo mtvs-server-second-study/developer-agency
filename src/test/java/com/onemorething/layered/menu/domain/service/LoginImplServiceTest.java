@@ -40,6 +40,7 @@ class LoginImplServiceTest {
         Assertions.assertEquals("한글, 대문자, ._외 특수문자가 포함되어 있습니다.", email);
 
     }
+  
     @DisplayName("한글을 이메일 계정에 입력하였을때 오류 발생하는지 테스트")
     @Test
     void testValidEmail3() {
@@ -66,10 +67,39 @@ class LoginImplServiceTest {
     @Test
     void testValidEmail5() {
 
+        // given
         String str = "qlekrjjsnbekfjdk12938475ekrngjkanwlektnglckdns178236548ekejgnddjfhfwkejgnsjksejhgb@gmail.com";
 
+        // when
         String email = loginImplService.validEmail(str);
-
+      
+        // then
         Assertions.assertEquals("길이를 초과하셨습니다.", email);
+    }
+
+    @DisplayName("비밀번호 재확인 일치")
+    @Test
+    void testSignUpCheckPassward() {
+
+        // given
+        String pwd1 = "123456789";
+        String pwd2 = "123456789";
+        // when
+        String result = loginImplService.signUpCheckPassward(pwd1, pwd2);
+        // then
+        Assertions.assertEquals("Yes", result);
+    }
+  
+    @DisplayName("비밀번호 재확인 불일치")
+    @Test
+    void testSignUpCheckPassward2() {
+
+        // given
+        String pwd1 = "12345678";
+        String pwd2 = "123456789";
+        // when
+        String result = loginImplService.signUpCheckPassward(pwd1, pwd2);
+        // then
+        Assertions.assertEquals("No", result);
     }
 }
