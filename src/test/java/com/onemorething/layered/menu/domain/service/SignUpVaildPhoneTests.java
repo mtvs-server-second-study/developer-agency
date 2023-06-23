@@ -7,16 +7,16 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LoginImplServicetests {
+public class SignUpVaildPhoneTests {
 
-    private LoginImplService loginImplService;
+    private UserLoginService loginImplService;
     private List<String> dataPhone1;
     private List<String> dataPhone2;
 
 
     @BeforeEach
     public void setUp() {
-        this.loginImplService = new LoginImplService();
+        this.loginImplService = new UserLoginService();
 
         this.dataPhone1 = new ArrayList<String>();
         this.dataPhone2 = new ArrayList<String>();

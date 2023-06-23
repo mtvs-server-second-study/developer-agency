@@ -4,7 +4,35 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.List;
 
-public class LoginImplService  {
+public class UserLoginService {
+
+    public String validEmail(String email) {
+
+        String regExp = "^[a-z0-9_.]+@[a-z0-9.-]+$";
+
+        String result;
+
+        if(email==null){
+
+            result = "아이디를 입력하세요.";
+
+        }else if(email.length()>50){
+
+            result = "길이를 초과하셨습니다.";
+
+        }else if(email.matches(regExp)) {
+
+            result = "정상입력입니다.";
+
+        }else {
+
+            result = "한글,대문자,._외 특수문자가 포함되어 있습니다.";
+
+        }
+
+        return result;
+
+    }
 
     public String signUpValidPhone(String userPhone){
 
@@ -52,7 +80,7 @@ public class LoginImplService  {
     }
 
     /* 설명. 비밀번호 재확인 로직*/
-    public String signUpCheckPassward(String pwd1, String pwd2) {
+    public String signUpCheckPassword(String pwd1, String pwd2) {
 
         String result = "Yes";
 

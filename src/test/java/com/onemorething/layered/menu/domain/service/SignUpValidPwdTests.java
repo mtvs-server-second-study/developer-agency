@@ -1,17 +1,16 @@
-package com.onemorething.layered.configuration.domain;
+package com.onemorething.layered.menu.domain.service;
 
-import com.onemorething.layered.menu.domain.service.LoginImplService;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class SignUpValidPwdTests {
 
-    LoginImplService loginImplService;
+    UserLoginService loginImplService;
 
     @BeforeEach
     public void setUp() {
-        this.loginImplService = new LoginImplService();
+        this.loginImplService = new UserLoginService();
     }
     @DisplayName("비밀번호를 숫자로만 입력한 경우 테스트")
     @ParameterizedTest

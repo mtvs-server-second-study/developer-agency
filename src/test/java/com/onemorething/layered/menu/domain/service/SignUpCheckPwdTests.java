@@ -5,36 +5,36 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class LoginImplServiceTest {
+class SignUpCheckPwdTests {
 
-    private LoginImplService loginImplService;
+    private UserLoginService loginImplService;
 
     @BeforeEach
     public void setUp() {
-        this.loginImplService = new LoginImplService();
+        this.loginImplService = new UserLoginService();
     }
 
     @DisplayName("비밀번호 재확인 일치")
     @Test
-    void testSignUpCheckPassward() {
+    void testSignUpCheckPassword() {
 
         // given
         String pwd1 = "123456789";
         String pwd2 = "123456789";
         // when
-        String result = loginImplService.signUpCheckPassward(pwd1, pwd2);
+        String result = loginImplService.signUpCheckPassword(pwd1, pwd2);
         // then
         Assertions.assertEquals("Yes", result);
     }
     @DisplayName("비밀번호 재확인 불일치")
     @Test
-    void testSignUpCheckPassward2() {
+    void testSignUpCheckPassword2() {
 
         // given
         String pwd1 = "12345678";
         String pwd2 = "123456789";
         // when
-        String result = loginImplService.signUpCheckPassward(pwd1, pwd2);
+        String result = loginImplService.signUpCheckPassword(pwd1, pwd2);
         // then
         Assertions.assertEquals("No", result);
     }
