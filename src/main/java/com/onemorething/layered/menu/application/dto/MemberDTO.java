@@ -8,16 +8,13 @@ public class MemberDTO {
     private String userName;
     private String userPwd;
     private String userCheckPwd;
-
-
-
-    private Date userBirth;
+    private String userBirth;
     private String userPhone;
     private String userTech1;
     private String userTech2;
     private String userTech3;
 
-    public MemberDTO(String userEmail, String userName, String userPwd, String userCheckPwd, Date userBirth, String userPhone, String userTech1, String userTech2, String userTech3) {
+    public MemberDTO(String userEmail, String userName, String userPwd, String userCheckPwd, String userBirth, String userPhone, String userTech1, String userTech2, String userTech3) {
         this.userEmail = userEmail;
         this.userName = userName;
         this.userPwd = userPwd;
@@ -61,11 +58,11 @@ public class MemberDTO {
         this.userCheckPwd = userCheckPwd;
     }
 
-    public Date getUserBirth() {
+    public String getUserBirth() {
         return userBirth;
     }
 
-    public void setUserBirth(Date userBirth) {
+    public void setUserBirth(String userBirth) {
         this.userBirth = userBirth;
     }
 
@@ -99,20 +96,5 @@ public class MemberDTO {
 
     public void setUserTech3(String userTech3) {
         this.userTech3 = userTech3;
-    }
-
-    @Override
-    public String toString() {
-        return "MemberDTO{" +
-                "userEmail='" + userEmail + '\'' +
-                ", userName='" + userName + '\'' +
-                ", userPwd='" + userPwd + '\'' +
-                ", userCheckPwd='" + userCheckPwd + '\'' +
-                ", userBirth=" + userBirth +
-                ", userPhone='" + userPhone + '\'' +
-                ", userTech1='" + userTech1 + '\'' +
-                ", userTech2='" + userTech2 + '\'' +
-                ", userTech3='" + userTech3 + '\'' +
-                '}';
     }
 }
