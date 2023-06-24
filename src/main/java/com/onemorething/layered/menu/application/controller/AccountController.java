@@ -5,14 +5,16 @@ import com.onemorething.layered.menu.application.service.SignUpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/account/*")
+@SessionAttributes({"userEmail","userPwd"})    // model.attribute()를 쓰기 위한 어노테이션
 public class AccountController {
 
     private final SignUpService signUpService;
@@ -38,6 +40,7 @@ public class AccountController {
         String pwd1 = request.getParameter("pwd1");
         String pwd2 = request.getParameter("pwd2");
         String phone = request.getParameter("phone");
+        String tech1  = request.getParameter("tech1");
 
         // memberDTO 에 값 담기
         memberDTO.setUserEmail(email);
@@ -45,6 +48,7 @@ public class AccountController {
         memberDTO.setUserPwd(pwd1);
         memberDTO.setUserCheckPwd(pwd2);
         memberDTO.setUserPhone(phone);
+        memberDTO.setUserTech1(tech1);
 
         // 서비스 호출
         signUpService.SignUp(memberDTO);
@@ -56,7 +60,18 @@ public class AccountController {
     @GetMapping("login")
     public String login() {
 
+        return "account/login";
+    }
 
-        return "/account/login";
+    @PostMapping("login")
+    public String loginMenu(Model model, RedirectAttributes rttr, @RequestParam String userEmail) {
+
+        //로그인 처리 로직 작성
+
+        //로그인 정보 세션에 저장
+        model.addAttribute("userEmail", userEmail);
+        rttr.addFlashAttribute("message", "환영합니다.");
+
+        return "redirect:/";
     }
 }
