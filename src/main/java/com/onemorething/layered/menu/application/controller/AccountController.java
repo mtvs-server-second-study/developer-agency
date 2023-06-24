@@ -6,10 +6,15 @@ import com.onemorething.layered.menu.application.service.SignUpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 
@@ -29,36 +34,29 @@ public class AccountController {
     }
 
     @GetMapping("/signup")
-    public String signUp() {
+    public String signUpFrom() {
 
         return "account/signup";
     }
 
     /* 회원가입에서 입력 값 넘기는 매핑 */
     @PostMapping("/signup")
-    public String signUpMenu(Model model, WebRequest request, MemberDTO memberDTO) {
-        // 사용자 입력값 변수에 담기
-        String email = request.getParameter("email");
-        String name = request.getParameter("name");
-        String pwd1 = request.getParameter("pwd1");
-        String pwd2 = request.getParameter("pwd2");
-        String phone = request.getParameter("phone");
-        String tech1 = request.getParameter("tech1");
+    public String signUp(@ModelAttribute("memberDTO") MemberDTO memberDTO, RedirectAttributes redirectAttributes) {
+        try {
+            //DTO를 이용한 값 전달 (로직실행)
+            signUpService.SignUp(memberDTO);
 
-        // memberDTO 에 값 담기
-        memberDTO.setUserEmail(email);
-        memberDTO.setUserName(name);
-        memberDTO.setUserPwd(pwd1);
-        memberDTO.setUserCheckPwd(pwd2);
-        memberDTO.setUserPhone(phone);
-        memberDTO.setUserTech1(tech1);
+            //리다이렉트 (메인페이지)
+            return "redirect:/";
+        } catch (IllegalArgumentException e){
+            //오류 발생시 회원가입 로직에서 에러메시지 를 받아옴
+            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
 
-        // 서비스 호출
-        signUpService.SignUp(memberDTO);
-
-        // 어떤걸 리턴해야 하는가?
-        return "redirect:/";
+            //회원가입 페이지로  alert 메시지 표출후 리다이렉트
+            return "redirect:/account/signup";
+        }
     }
+
 
     @GetMapping("login")
     public String login() {
@@ -129,5 +127,6 @@ public class AccountController {
 
         return "/account/findpasswordresult";
     }
+
 }
 
