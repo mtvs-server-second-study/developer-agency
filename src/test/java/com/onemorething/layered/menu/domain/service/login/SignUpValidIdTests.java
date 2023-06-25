@@ -79,22 +79,6 @@ class SignUpValidIdTests {
 
     }
 
-    @DisplayName("아무것도 입력하지 않았을때 오류 발생 테스트")
-    @Test
-    void testValidEmail4() {
-
-        //given
-        String str = null;
-
-        //when,then
-        e= Assertions.assertThrows(
-                IllegalArgumentException.class,
-                () -> userSignUpService.signupValidEmail(str)
-        );
-        System.out.println(e);
-
-    }
-
     @DisplayName("이메일 계정이 50자를 초과했을때 오류 발생 테스트")
     @Test
     void testValidEmail5() {

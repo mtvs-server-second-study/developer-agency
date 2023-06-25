@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="UserRepository">
+    <resultMap id="UserResultMap" type="com.onemorething.layered.menu.domain.aggregate.entity.User">
+        <id property="userEmail" column="userId" />
+        <result property="userName" column="userName" />
+        <result property="userPwd" column="userPwd" />
+        <result property="userBirth" column="userBirth" />
+        <result property="userPhone" column="userPhone" />
+        <result property="userTechStack1" column="userTech1" />
+        <result property="userTechStack2" column="userTech2" />
+        <result property="userTechStack3" column="userTech3" />
+    </resultMap>
+
+    <select id="getUserList" resultMap="UserResultMap">
+        SELECT * FROM USER
+    </select>
+
+</mapper>

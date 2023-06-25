@@ -1,8 +1,6 @@
 package com.onemorething.layered.menu.application.dto;
 
-import java.util.Date;
-
-public class MemberDTO {
+public class UserDTO {
 
     private String userEmail;
     private String userName;
@@ -14,7 +12,7 @@ public class MemberDTO {
     private String userTech2;
     private String userTech3;
 
-    public MemberDTO(String userEmail, String userName, String userPwd, String userCheckPwd, String userBirth, String userPhone, String userTech1, String userTech2, String userTech3) {
+    public UserDTO(String userEmail, String userName, String userPwd, String userCheckPwd, String userBirth, String userPhone, String userTech1, String userTech2, String userTech3) {
         this.userEmail = userEmail;
         this.userName = userName;
         this.userPwd = userPwd;
