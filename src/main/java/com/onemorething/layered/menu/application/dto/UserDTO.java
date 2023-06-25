@@ -12,6 +12,10 @@ public class UserDTO {
     private String userTech2;
     private String userTech3;
 
+    public UserDTO(String userName) {
+        this.userName = userName;
+    }
+
     public UserDTO(String userEmail, String userName, String userPwd, String userCheckPwd, String userBirth, String userPhone, String userTech1, String userTech2, String userTech3) {
         this.userEmail = userEmail;
         this.userName = userName;

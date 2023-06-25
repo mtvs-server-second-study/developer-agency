@@ -98,6 +98,10 @@ public class AccountController {
     @GetMapping("findid")
     public String findId() {
 
+        String name = "관리자";
+
+        signUpService.findId(new UserDTO(name));
+
         return "/account/findid";
     }
 
