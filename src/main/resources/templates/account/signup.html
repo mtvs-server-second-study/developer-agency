@@ -6,20 +6,18 @@
 </head>
 <body>
 <script>
-    let errorMessage = "[[${errorMessage}]]";
-    //에러메시지가 오지않을경우 초기값 ""
-    //Thymemleaf 활용하여 에러 메시지 출력
-    if (errorMessage.trim() !== "") {
-        //공백을 지웠을때 "" 가 아닐경우 (값이 있을경우)
-        alert(errorMessage);
-        //AccountController에서 redirectAttributes로 보낸 errormessage
-        // alert 메시지로 출력
+    const message = "[[${message}]]";
+    //message 변수에 message (signup 에서 오류가 리턴될 경우 값 삽입 아닐경우"")
+    if (message.trim() !== "") {
+        //message 변수가 비어있지 않을때
+        alert(message);
+        //alert 출력
     }
 </script>
 
 <h1 align="center">Sign Up</h1>
 <form align="center" action="/account/signup" method="post">
-    Email: <input type="text" name="userEmail"><br>
+    Email: <input type="text" name="userId">
     Password: <input type="password" name="userPwd"><br>
     Repeat password: <input type="password" name="userCheckPwd"><br>
     Name: <input type="text" name="userName"><br>
