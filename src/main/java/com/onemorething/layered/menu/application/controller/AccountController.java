@@ -1,6 +1,6 @@
 package com.onemorething.layered.menu.application.controller;
 
-import com.onemorething.layered.menu.application.dto.MemberDTO;
+import com.onemorething.layered.menu.application.dto.UserDTO;
 import com.onemorething.layered.menu.application.service.LoginService;
 import com.onemorething.layered.menu.application.service.SignUpService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +14,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.servlet.ModelAndView;
-
-import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/account/*")
@@ -41,10 +38,10 @@ public class AccountController {
 
     /* 회원가입에서 입력 값 넘기는 매핑 */
     @PostMapping("/signup")
-    public String signUp(@ModelAttribute("memberDTO") MemberDTO memberDTO, RedirectAttributes redirectAttributes) {
+    public String signUp(@ModelAttribute("memberDTO") UserDTO userDTO, RedirectAttributes redirectAttributes) {
         try {
             //DTO를 이용한 값 전달 (로직실행)
-            signUpService.SignUp(memberDTO);
+            signUpService.SignUp(userDTO);
 
             //리다이렉트 (메인페이지)
             return "redirect:/";
@@ -78,21 +75,21 @@ public class AccountController {
 //    }
 
     @PostMapping("/login")
-    public String loginMenu(Model model, WebRequest request, MemberDTO memberDTO) {
+    public String loginMenu(Model model, WebRequest request, UserDTO userDTO) {
         // 사용자 입력값 변수에 담기
         String email = request.getParameter("userEmail");
         String pwd = request.getParameter("userPwd");
 
         // memberDTO 에 값 담기
-        memberDTO.setUserEmail(email);
-        memberDTO.setUserPwd(pwd);
+        userDTO.setUserEmail(email);
+        userDTO.setUserPwd(pwd);
 
         //로그인 정보 세션에 저장
 //        model.addAttribute("userEmail", userEmail);
 //        rttr.addFlashAttribute("message", "환영합니다.");
 
         // 서비스 호출
-        loginService.LogIn(memberDTO);
+        loginService.LogIn(userDTO);
 
         // 어떤걸 리턴해야 하는가?
         return "redirect:/";

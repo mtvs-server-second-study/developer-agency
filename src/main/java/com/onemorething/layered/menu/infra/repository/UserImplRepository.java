@@ -4,7 +4,6 @@ import com.onemorething.layered.menu.domain.aggregate.entity.User;
 import com.onemorething.layered.menu.domain.repository.UserRepository;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.SqlSession;
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;

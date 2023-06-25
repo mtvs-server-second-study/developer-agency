@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface UserRepository {
 
+
     public List<User> getUserList();
 }
