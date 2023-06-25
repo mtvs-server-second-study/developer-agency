@@ -7,18 +7,19 @@ import com.onemorething.layered.menu.domain.service.login.UserSignUpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Struct;
+
 @Service
 public class SignUpService {
 
     // repo 의존성 주입하기
     private final UserSignUpService userSignUpService;
-    private final UserRepository userRepository;
+
 
     @Autowired
-    public SignUpService(UserSignUpService userSignUpService, UserRepository userRepository) {
+    public SignUpService(UserSignUpService userSignUpService) {
 
         this.userSignUpService = userSignUpService;
-        this.userRepository = userRepository;
     }
 
     /* 회원가입 로직 */
@@ -33,15 +34,5 @@ public class SignUpService {
             // eneity 변환
 
             // repo 호출하여 저장
-    }
-
-    public String findId(UserDTO userDTO) {
-
-        String result = userRepository.findId(new User(userDTO));
-        System.out.println(result);
-        if (result==null) {
-            return "Not Found";
-        }
-        return result;
     }
 }

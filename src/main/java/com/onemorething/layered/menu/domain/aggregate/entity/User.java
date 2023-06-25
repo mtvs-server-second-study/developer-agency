@@ -13,6 +13,8 @@ public class User {
     private String userTechStack2;
     private String userTechStack3;
 
+    public User() {};
+
     public User(String userEmail, String userName, String userPwd, String userBirth, String userPhone, String userTechStack1, String userTechStack2, String userTechStack3) {
         this.userEmail = userEmail;
         this.userName = userName;

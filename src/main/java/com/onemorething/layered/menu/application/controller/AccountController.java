@@ -97,18 +97,15 @@ public class AccountController {
 
     @GetMapping("findid")
     public String findId() {
-
-        String name = "관리자";
-
-        signUpService.findId(new UserDTO(name));
-
         return "/account/findid";
     }
 
     @PostMapping("findid")
-    public String findIdResult(@RequestParam("userName") String userName, Model model) {
-        //db와 연결되면 userEmail로 받아와야함.
-        String message = userName + "의 id는 asdadf@gmail.com 입니다";
+    public String findIdResult(Model model, UserDTO userDTO) {
+
+        String email = loginService.findId(userDTO);
+
+        String message = userDTO.getUserName() + "님의 id는 " + email + "입니다.";
         model.addAttribute("message", message);
 
         return "/account/findidresult";
@@ -116,14 +113,14 @@ public class AccountController {
 
     @GetMapping("findpassword")
     public String findPwd() {
-
         return "/account/findpassword";
     }
 
     @PostMapping("findpassword")
-    public String findPwdResult(@RequestParam("userName") String userName, Model model) {
-        //db와 연결되면 매칭해서 받아와야함.
-        String message = userName + "의 password는 1234 입니다";
+    public String findPwdResult(Model model, UserDTO userDTO) {
+
+        String password = loginService.findPwd(userDTO);
+        String message = userDTO.getUserName() + "님의 password는 " + password + "입니다";
         model.addAttribute("message", message);
 
         return "/account/findpasswordresult";

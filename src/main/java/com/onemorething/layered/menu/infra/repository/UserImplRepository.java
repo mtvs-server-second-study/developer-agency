@@ -27,9 +27,13 @@ public class UserImplRepository implements UserRepository {
         return sqlSession.selectList("UserRepository.getUserList");
     }
 
-
     @Override
     public User findId(User user) {
-        return sqlSession.selectOne("UserRepository.findId", user.getUserName());
+        return sqlSession.selectOne("UserRepository.findId", user);
+    }
+
+    @Override
+    public User findPwd(User user) {
+        return sqlSession.selectOne("UserRepository.findPwd", user);
     }
 }

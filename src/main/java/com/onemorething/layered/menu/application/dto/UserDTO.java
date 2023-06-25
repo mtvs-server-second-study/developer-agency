@@ -12,6 +12,8 @@ public class UserDTO {
     private String userTech2;
     private String userTech3;
 
+    public UserDTO() {};
+
     public UserDTO(String userName) {
         this.userName = userName;
     }
