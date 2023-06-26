@@ -8,6 +8,7 @@ import java.util.List;
 
 @Component
 public interface UserRepository {
+
     void saveUser(User user); //회원가입에 이용할 saveUser 정의
 
     /* 설명. 이용자 명단 전체 조회 */
