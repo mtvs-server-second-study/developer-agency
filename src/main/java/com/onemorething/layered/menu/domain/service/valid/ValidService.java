@@ -1,4 +1,4 @@
-package com.onemorething.layered.menu.domain.service.login;
+package com.onemorething.layered.menu.domain.service.valid;
 
 import org.springframework.stereotype.Service;
 
@@ -6,9 +6,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Service
-public class UserLogInService {
+public class ValidService {
 
-    public String loginValidEmail(String userEmail) {
+    public String checkValidEmail(String userEmail) {
 
         String reqExp = "^[a-z0-9_.]+@[a-z0-9.-]+$";
 
@@ -35,7 +35,7 @@ public class UserLogInService {
 
     }
 
-    public String loginValidPwd(String userPwd) {
+    public String checkValidPwd(String userPwd) {
 
         Pattern pattern = Pattern.compile("^(?=.*[a-zA-Z])(?=.*\\d)(?=.*\\W)(?!.*[ㄱ-ㅎㅏ-ㅣ가-힣])(?!.*\\s).{6,20}$");
         Matcher password = pattern.matcher(userPwd);
@@ -45,5 +45,20 @@ public class UserLogInService {
         }
 
         return "정상";
+    }
+
+    public String checkValidPhone(String userPhone) {
+
+        String patternPhone = "^01([0|1|6|7|8|9])-([0-9]{3,4})-([0-9]{4})$";
+        /*
+            01로 시작하고 (0,1,6,7,8,9)중 하나의 숫자  - (0~9)중 3개 혹은 4개숫자 - (0~9)중 4개 숫자
+         */
+        if (userPhone == null) {//null값 처리
+            throw new IllegalArgumentException("핸드폰 번호를 입력해 주세요.");
+        } else if (!userPhone.matches(patternPhone)) { //패턴과 일치하지 않을경우
+            throw new IllegalArgumentException("정확한 핸드폰 번호를 입력해 주세요.");
+        } else {
+            return "정상";
+        }
     }
 }

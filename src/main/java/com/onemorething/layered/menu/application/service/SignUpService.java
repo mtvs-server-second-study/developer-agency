@@ -4,6 +4,7 @@ import com.onemorething.layered.menu.application.dto.UserDTO;
 import com.onemorething.layered.menu.domain.aggregate.entity.User;
 import com.onemorething.layered.menu.domain.repository.UserRepository;
 import com.onemorething.layered.menu.domain.service.login.UserSignUpService;
+import com.onemorething.layered.menu.domain.service.valid.ValidService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,12 +14,15 @@ public class SignUpService {
     // repository
     private final UserRepository userRepository;
     // 검증로직
+    private final ValidService validService;
+
     private final UserSignUpService userSignUpService;
 
     //의존성 주입
     @Autowired
-    public SignUpService(UserSignUpService userSignUpService,UserRepository userRepository) {
+    public SignUpService(ValidService validService, UserRepository userRepository, UserSignUpService userSignUpService) {
         this.userRepository= userRepository;
+        this.validService = validService;
         this.userSignUpService = userSignUpService;
     }
 
@@ -26,10 +30,10 @@ public class SignUpService {
     public void signUp(UserDTO userDTO) {
 
         //검증로직 호출
-        userSignUpService.signupValidEmail(userDTO.getUserEmail());
-        userSignUpService.signUpValidPwd(userDTO.getUserPwd());
+        validService.checkValidEmail(userDTO.getUserEmail());
+        validService.checkValidPwd(userDTO.getUserPwd());
         userSignUpService.signUpCheckPwd(userDTO.getUserPwd(), userDTO.getUserCheckPwd());
-        userSignUpService.signUpValidPhone(userDTO.getUserPhone());
+        validService.checkValidPhone(userDTO.getUserPhone());
 
         // UserDTO > User(entity) 변환
         User user=new User(userDTO);

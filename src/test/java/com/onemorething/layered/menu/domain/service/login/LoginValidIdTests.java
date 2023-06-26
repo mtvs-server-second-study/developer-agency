@@ -1,5 +1,6 @@
 package com.onemorething.layered.menu.domain.service.login;
 
+import com.onemorething.layered.menu.domain.service.valid.ValidService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -8,13 +9,13 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class LoginValidIdTests {
 
-    private UserLogInService userLogInService;
+    private ValidService validService;
 
     private Exception e;
 
     @BeforeEach
     public void setUp() {
-        this.userLogInService = new UserLogInService();
+        this.validService = new ValidService();
         this.e = new Exception();
     }
 
@@ -25,7 +26,7 @@ public class LoginValidIdTests {
         //when, then
         e = Assertions.assertThrows(
                 IllegalArgumentException.class,
-                () -> userLogInService.loginValidEmail(userEmail)
+                () -> validService.checkValidEmail(userEmail)
         );
 
         System.out.println("e = " + e);
@@ -39,7 +40,7 @@ public class LoginValidIdTests {
         //when, then
         e = Assertions.assertThrows(
                 IllegalArgumentException.class,
-                () -> userLogInService.loginValidEmail(userEmail)
+                () -> validService.checkValidEmail(userEmail)
         );
 
         System.out.println("e = " + e);
@@ -51,7 +52,7 @@ public class LoginValidIdTests {
         //when, then
         e = Assertions.assertThrows(
                 IllegalArgumentException.class,
-                () -> userLogInService.loginValidEmail(userEmail)
+                () -> validService.checkValidEmail(userEmail)
         );
 
         System.out.println("e = " + e);
@@ -63,7 +64,7 @@ public class LoginValidIdTests {
         //when, then
         e = Assertions.assertThrows(
                 IllegalArgumentException.class,
-                () -> userLogInService.loginValidEmail(userEmail)
+                () -> validService.checkValidEmail(userEmail)
         );
 
         System.out.println("e = " + e);
@@ -75,7 +76,7 @@ public class LoginValidIdTests {
         //when, then
         e = Assertions.assertThrows(
                 IllegalArgumentException.class,
-                () -> userLogInService.loginValidEmail(userEmail)
+                () -> validService.checkValidEmail(userEmail)
         );
 
         System.out.println("e = " + e);
@@ -85,7 +86,7 @@ public class LoginValidIdTests {
     @ValueSource(strings = {"gywjd@gmail.com", "hj@gmail.com", "nam1234@gmail.com"}) //given
     public void testValidEmail6(String userEmail) {
         //when
-        String result = userLogInService.loginValidEmail(userEmail);
+        String result = validService.checkValidEmail(userEmail);
 
         // then
         Assertions.assertEquals("정상", result);

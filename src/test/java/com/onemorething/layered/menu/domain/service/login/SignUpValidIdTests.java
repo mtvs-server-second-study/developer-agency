@@ -1,6 +1,7 @@
 package com.onemorething.layered.menu.domain.service.login;
 
 import com.onemorething.layered.menu.domain.service.login.UserSignUpService;
+import com.onemorething.layered.menu.domain.service.valid.ValidService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -8,12 +9,12 @@ import org.junit.jupiter.api.Test;
 
 class SignUpValidIdTests {
 
-    private UserSignUpService userSignUpService;
+    private ValidService validService;
 
     private Exception e;
     @BeforeEach
     public void setUp() {
-        this.userSignUpService = new UserSignUpService();
+        this.validService = new ValidService();
         this.e=new Exception();
     }
 
@@ -25,7 +26,7 @@ class SignUpValidIdTests {
         String str="hong12@gmail.com";
 
         //when
-        String result= userSignUpService.signupValidEmail(str);
+        String result= validService.checkValidEmail(str);
 
         //then
         Assertions.assertEquals("정상",result);
@@ -42,7 +43,7 @@ class SignUpValidIdTests {
 
         e= Assertions.assertThrows(
                 IllegalArgumentException.class,
-                () -> userSignUpService.signupValidEmail(str)
+                () -> validService.checkValidEmail(str)
         );
         System.out.println(e);
 
@@ -58,7 +59,7 @@ class SignUpValidIdTests {
         //when,then
         e= Assertions.assertThrows(
                 IllegalArgumentException.class,
-                () -> userSignUpService.signupValidEmail(str)
+                () -> validService.checkValidEmail(str)
         );
         System.out.println(e);
 
@@ -73,7 +74,7 @@ class SignUpValidIdTests {
         //when,then
         e= Assertions.assertThrows(
                 IllegalArgumentException.class,
-                () -> userSignUpService.signupValidEmail(str)
+                () -> validService.checkValidEmail(str)
         );
         System.out.println(e);
 
@@ -89,7 +90,7 @@ class SignUpValidIdTests {
         //when,then
         e= Assertions.assertThrows(
                 IllegalArgumentException.class,
-                () -> userSignUpService.signupValidEmail(str)
+                () -> validService.checkValidEmail(str)
         );
         System.out.println(e);
 
