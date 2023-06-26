@@ -14,6 +14,11 @@
         <result property="userTechStack3" column="userTech3" />
     </resultMap>
 
+    <resultMap id="UserResultMap2" type="com.onemorething.layered.menu.domain.aggregate.entity.User">
+        <id property="userEmail" column="userId" />
+        <result property="userPwd" column="userPwd" />
+    </resultMap>
+
     <select id="getUserList" resultMap="UserResultMap">
         SELECT * FROM USER
     </select>
@@ -31,5 +36,26 @@
         FROM USER
         WHERE userId = #{userEmail} AND userName = #{userName} AND userPhone = #{userPhone}
     </select>
+
+    <select id="login" parameterType="com.onemorething.layered.menu.domain.aggregate.entity.User" resultMap="UserResultMap">
+        SELECT
+               userId
+             , userName
+             , userPwd
+             , userBirth
+             , userPhone
+             , userTech1
+             , userTech2
+             , userTech3
+        FROM USER
+        WHERE userId = #{ userEmail }
+    </select>
+
+    <!--    SQL INSERT 연산 쿼리문 정의-->
+    <insert id="saveUser" parameterType="com.onemorething.layered.menu.domain.aggregate.entity.User">
+        INSERT INTO USER (userId, userName, userPwd, userBirth, userPhone, userTech1, userTech2, userTech3)
+        VALUES (#{userEmail}, #{userName}, #{userPwd}, #{userBirth}, #{userPhone}, #{userTechStack1}, #{userTechStack2}, #{userTechStack3})
+    </insert>
+
 
 </mapper>

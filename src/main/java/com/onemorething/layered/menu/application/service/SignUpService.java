@@ -12,18 +12,19 @@ import java.sql.Struct;
 @Service
 public class SignUpService {
 
-    // repo 의존성 주입하기
+    // repository
+    private final UserRepository userRepository;
+    // 검증로직
     private final UserSignUpService userSignUpService;
 
-
     @Autowired
-    public SignUpService(UserSignUpService userSignUpService) {
-
+    public SignUpService(UserSignUpService userSignUpService,UserRepository userRepository) {
+        this.userRepository= userRepository;
         this.userSignUpService = userSignUpService;
     }
 
-    /* 회원가입 로직 */
-    public void SignUp(UserDTO userDTO) {
+    //회원가입 로직
+    public void signUp(UserDTO userDTO) {
 
         //검증로직 호출
         userSignUpService.signupValidEmail(userDTO.getUserEmail());
@@ -31,8 +32,10 @@ public class SignUpService {
         userSignUpService.signUpCheckPwd(userDTO.getUserPwd(), userDTO.getUserCheckPwd());
         userSignUpService.signUpValidPhone(userDTO.getUserPhone());
 
-            // eneity 변환
+        // UserDTO > User(entity) 변환
+        User user=new User(userDTO);
 
-            // repo 호출하여 저장
+        // UserImplRepository 호출하여 저장 (entity 활용)
+        userRepository.saveUser(user);
     }
 }

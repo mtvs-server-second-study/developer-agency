@@ -10,19 +10,19 @@ import java.util.regex.Pattern;
 @Service
 public class UserSignUpService {
 
-    public String signupValidEmail(String email) {
+    public String signupValidEmail(String userEmail) {
 
         String regExp = "^[a-z0-9_.]+@[a-z0-9.-]+$";
 
-        if(email=="" || email == null){
+        if(userEmail==""){
 
             throw new IllegalArgumentException("이메일을 입력하세요.");
 
-        }else if(email.length()>50){
+        }else if(userEmail.length()>50){
 
             throw new IllegalArgumentException("이메일의 길이가 깁니다.");
 
-        }else if(email.matches(regExp)) {
+        }else if(userEmail.matches(regExp)) {
 
             return"정상";
 
@@ -70,4 +70,5 @@ public class UserSignUpService {
         }
         return "정상";
     }
+
 }

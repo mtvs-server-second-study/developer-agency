@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
+
+import javax.servlet.http.HttpSession;
+
 
 @Controller
 @RequestMapping("/account/*")
@@ -33,25 +35,29 @@ public class AccountController {
     @GetMapping("/signup")
     public void signUpFrom() {
     }
+  
+    @GetMapping("/signupresult")
+    public String signUpResult() {
+
+        return "account/signupresult";
+    }
 
     /* 회원가입에서 입력 값 넘기는 매핑 */
     @PostMapping("/signup")
-    public String signUp(@ModelAttribute("memberDTO") UserDTO userDTO, RedirectAttributes redirectAttributes) {
+    public String signUp(@ModelAttribute("userDTO") UserDTO userDTO, RedirectAttributes rttr) {
         try {
-            //DTO를 이용한 값 전달 (로직실행)
-            signUpService.SignUp(userDTO);
-
-            //리다이렉트 (메인페이지)
-            return "redirect:/";
-        } catch (IllegalArgumentException e){
+            //DTO를 이용한 값 전달 (로직실행), entity로 변환후 DB INSERT
+            signUpService.signUp(userDTO);
+            //리다이렉트 (회원가입 결과 페이지)
+            return "redirect:/account/signupresult";
+        } catch (IllegalArgumentException e) {
             //오류 발생시 회원가입 로직에서 에러메시지 를 받아옴
-            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+            rttr.addFlashAttribute("message", e.getMessage());
 
             //회원가입 페이지로  alert 메시지 표출후 리다이렉트
             return "redirect:/account/signup";
         }
     }
-
 
     @GetMapping("login")
     public void login() {}
@@ -70,25 +76,49 @@ public class AccountController {
 //    }
 
     @PostMapping("/login")
-    public String loginMenu(Model model, WebRequest request, UserDTO userDTO) {
-        // 사용자 입력값 변수에 담기
-        String email = request.getParameter("userEmail");
-        String pwd = request.getParameter("userPwd");
+    public String loginMenu(HttpSession session, UserDTO userDTO) {
+        // 사용자 입력값 가져오기
+        String email = userDTO.getUserEmail();
 
-        // memberDTO 에 값 담기
-        userDTO.setUserEmail(email);
-        userDTO.setUserPwd(pwd);
+        // 로그인 처리
+        if (loginService.LogIn(userDTO)) {
+            // 로그인 성공한 경우
+            // 세션에 사용자 정보 저장
+            session.setAttribute("userEmail", email);
 
-        //로그인 정보 세션에 저장
-//        model.addAttribute("userEmail", userEmail);
-//        rttr.addFlashAttribute("message", "환영합니다.");
+            // 필요한 경우, 환영 메시지 등을 세션에 저장
+            session.setAttribute("message", userDTO + "님 환영합니다.");
 
-        // 서비스 호출
-        loginService.LogIn(userDTO);
+            return "redirect:/";
 
-        // 어떤걸 리턴해야 하는가?
-        return "redirect:/";
+        } else {
+            // 로그인 실패한 경우
+
+
+            return "이상해";
+        }
     }
+
+
+            // 로그인 실패한 경우
+            // 실패 처리 로직 수행
+            // ...
+
+//            return "redirect:/login";
+//        // memberDTO 에 값 담기
+//        userDTO.setUserEmail(email);
+//        userDTO.setUserPwd(pwd);
+//
+//        //로그인 정보 세션에 저장
+////        model.addAttribute("userEmail", userEmail);
+////        rttr.addFlashAttribute("message", "환영합니다.");
+//
+//        // 서비스 호출
+//        loginService.LogIn(userDTO);
+//
+//        // 어떤걸 리턴해야 하는가?
+//        return "redirect:/";
+//    }
 
     @GetMapping("findid")
     public void findId() {}
