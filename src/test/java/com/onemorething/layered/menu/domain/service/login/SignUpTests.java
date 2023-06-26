@@ -248,7 +248,7 @@ class SignUpTests {
     public void nullArgument(){ //null값 입력
 
         //given
-        String phone1 = "";
+        String phone1 = null;
 
         //when,then
         e= Assertions.assertThrows(
