@@ -7,7 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class LoginValidPwdTests {
+public class LoginTests {
 
     private ValidService validService;
 
@@ -19,6 +19,81 @@ public class LoginValidPwdTests {
         this.e = new Exception();
     }
 
+    /* 설명. 이메일 유효성 검사 */
+    @DisplayName("이메일에 공백이 있는 경우 IllegalArgumentException 발생하는지 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"nam@ gmail.com", "n am@gmail.com", " nam@gmail.com"})  //given
+    public void testValidEmail1(String userEmail) {
+        //when, then
+        e = Assertions.assertThrows(
+                IllegalArgumentException.class,
+                () -> validService.checkValidEmail(userEmail)
+        );
+
+        System.out.println("e = " + e);
+    }
+
+    @DisplayName("이메일의 길이가 50자 이상이면 IllegalArgumentException 발생하는지 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"asdfghjklqwertyuiopzxcvbnmasdfghjklqwertyuiopqwert@gmail.com",
+            "asdfqwertgyhujikolpxzzcvbnmghfjdksleoritudhfjgkslqo@gmail.com"}) //given
+    public void testValidEmail2(String userEmail) {
+        //when, then
+        e = Assertions.assertThrows(
+                IllegalArgumentException.class,
+                () -> validService.checkValidEmail(userEmail)
+        );
+
+        System.out.println("e = " + e);
+    }
+    @DisplayName("이메일에 대문자가 포함되면 IllegalArgumentException 발생하는지 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"Abcde@gmail.com", "Fghijk@gmail.com", "asfkGF@gamil.com"}) //given
+    public void testValidEmail3(String userEmail) {
+        //when, then
+        e = Assertions.assertThrows(
+                IllegalArgumentException.class,
+                () -> validService.checkValidEmail(userEmail)
+        );
+
+        System.out.println("e = " + e);
+    }
+    @DisplayName("이메일에 ._외의 특수문자가 포함되면 IllegalArgumentException 발생하는지 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"abcde$%@gmail.com", "sdfas&&^*@gmail.com", "asdasf!@gmail.com"}) //given
+    public void testValidEmail4(String userEmail) {
+        //when, then
+        e = Assertions.assertThrows(
+                IllegalArgumentException.class,
+                () -> validService.checkValidEmail(userEmail)
+        );
+
+        System.out.println("e = " + e);
+    }
+    @DisplayName("이메일에 한글이 포함되면 IllegalArgumentException 발생하는지 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"ㅁㄴㅇㄹ@gmail.com", "aasdㄴ@gmail.com"}) //given
+    public void testValidEmail5(String userEmail) {
+        //when, then
+        e = Assertions.assertThrows(
+                IllegalArgumentException.class,
+                () -> validService.checkValidEmail(userEmail)
+        );
+
+        System.out.println("e = " + e);
+    }
+    @DisplayName("이메일 정상 입력 시 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"gywjd@gmail.com", "hj@gmail.com", "nam1234@gmail.com"}) //given
+    public void testValidEmail6(String userEmail) {
+        //when
+        String result = validService.checkValidEmail(userEmail);
+
+        // then
+        Assertions.assertEquals("정상", result);
+    }
+
+    /* 설명. 비밀번호 유효성 검사 */
     @DisplayName("비밀번호를 숫자로만 입력한 경우 테스트")
     @ParameterizedTest
     @ValueSource(strings = {"111111", "123456", "1234567890"}) //given
@@ -145,4 +220,5 @@ public class LoginValidPwdTests {
         // then
         Assertions.assertEquals("정상", result);
     }
+
 }
