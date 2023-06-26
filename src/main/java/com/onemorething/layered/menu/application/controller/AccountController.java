@@ -3,6 +3,7 @@ package com.onemorething.layered.menu.application.controller;
 import com.onemorething.layered.menu.application.dto.UserDTO;
 import com.onemorething.layered.menu.application.service.LoginService;
 import com.onemorething.layered.menu.application.service.SignUpService;
+import com.onemorething.layered.menu.application.service.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,17 +20,19 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/account/*")
-@SessionAttributes({"userEmail","userPwd"})    // model.attribute()를 쓰기 위한 어노테이션
 public class AccountController {
 
     private final SignUpService signUpService;
     private final LoginService loginService;
 
+    private final UserMapper userMapper;
+
     @Autowired
-    public AccountController(SignUpService signUpService, LoginService loginService) {
+    public AccountController(SignUpService signUpService, LoginService loginService, UserMapper userMapper) {
 
         this.signUpService = signUpService;
         this.loginService = loginService;
+        this.userMapper = userMapper;
     }
 
     @GetMapping("/signup")
@@ -62,63 +65,29 @@ public class AccountController {
     @GetMapping("login")
     public void login() {}
 
-//    @PostMapping("login")
-//    public String loginMenu(Model model, RedirectAttributes rttr, @RequestParam String userEmail) {
-//
-//        //로그인 처리 로직 작성
-//
-//
-//        //로그인 정보 세션에 저장
-//        model.addAttribute("userEmail", userEmail);
-//        rttr.addFlashAttribute("message", "환영합니다.");
-//
-//        return "redirect:/";
-//    }
-
     @PostMapping("/login")
-    public String loginMenu(HttpSession session, UserDTO userDTO) {
-        // 사용자 입력값 가져오기
-        String email = userDTO.getUserEmail();
+        public String loginMenu(HttpSession session, RedirectAttributes rttr, UserDTO userDTO) {
+
 
         // 로그인 처리
-        if (loginService.LogIn(userDTO)) {
-            // 로그인 성공한 경우
-            // 세션에 사용자 정보 저장
-            session.setAttribute("userEmail", email);
+        try {
+            userDTO = userMapper.toDTO(loginService.LogIn(userDTO));
+
+            // 로그인 성공한 경우 세션에 사용자 정보 저장
+            session.setAttribute("userEmail", userDTO.getUserEmail());
+            session.setAttribute("userName", userDTO.getUserName());
 
             // 필요한 경우, 환영 메시지 등을 세션에 저장
-            session.setAttribute("message", userDTO + "님 환영합니다.");
-
             return "redirect:/";
 
-        } else {
+        } catch (IllegalArgumentException e) {
+
             // 로그인 실패한 경우
+            rttr.addFlashAttribute("message", e.getMessage());
 
-
-            return "이상해";
+            return "redirect:/account/login";
         }
     }
-
-
-            // 로그인 실패한 경우
-            // 실패 처리 로직 수행
-            // ...
-
-//            return "redirect:/login";
-//        // memberDTO 에 값 담기
-//        userDTO.setUserEmail(email);
-//        userDTO.setUserPwd(pwd);
-//
-//        //로그인 정보 세션에 저장
-////        model.addAttribute("userEmail", userEmail);
-////        rttr.addFlashAttribute("message", "환영합니다.");
-//
-//        // 서비스 호출
-//        loginService.LogIn(userDTO);
-//
-//        // 어떤걸 리턴해야 하는가?
-//        return "redirect:/";
-//    }
 
     @GetMapping("findid")
     public void findId() {}
