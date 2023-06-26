@@ -39,17 +39,6 @@ public class User {
         this.userTechStack3 = userTechStack3;
     }
 
-    public User(UserDTO userDTO) {
-        this.userEmail = userDTO.getUserEmail();
-        this.userName = userDTO.getUserName();
-        this.userPwd = userDTO.getUserPwd();
-        this.userBirth = userDTO.getUserBirth();
-        this.userPhone = userDTO.getUserPhone();
-        this.userTechStack1 = userDTO.getUserTech1();
-        this.userTechStack2 = userDTO.getUserTech2();
-        this.userTechStack3 = userDTO.getUserTech3();
-    }
-
     public String getUserEmail() {
         return userEmail;
     }

@@ -4,25 +4,21 @@ package com.onemorething.layered.menu.application.service;
 import com.onemorething.layered.menu.application.dto.UserDTO;
 import com.onemorething.layered.menu.domain.aggregate.entity.User;
 import com.onemorething.layered.menu.domain.repository.UserRepository;
-import com.onemorething.layered.menu.domain.service.login.UserLogInService;
-import com.onemorething.layered.menu.infra.repository.UserImplRepository;
+import com.onemorething.layered.menu.domain.service.valid.ValidService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class LoginService {
 
     //repo 의존성 주입
-    private final UserLogInService userLogInService;
+    private final ValidService validService;
     private final UserRepository userRepository;
 
     @Autowired
-    public LoginService(UserLogInService userLogInService, UserRepository userRepository) {
+    public LoginService(ValidService validService, UserRepository userRepository) {
 
-        this.userLogInService = userLogInService;
+        this.validService = validService;
         this.userRepository = userRepository;
     }
 
@@ -49,8 +45,8 @@ public class LoginService {
     //로그인 로직
     public boolean LogIn(UserDTO userDTO) {
         // 검증로직
-        userLogInService.loginValidEmail(userDTO.getUserEmail());
-        userLogInService.loginValidPwd(userDTO.getUserPwd());
+        validService.checkValidEmail(userDTO.getUserEmail());
+        validService.checkValidPwd(userDTO.getUserPwd());
 
         // UserDTO -> User(entity) 변환
         User user = new User(userDTO);
