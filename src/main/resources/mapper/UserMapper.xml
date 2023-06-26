@@ -37,4 +37,11 @@
         WHERE userId = #{ userEmail }
     </select>
 
+    <!--    SQL INSERT 연산 쿼리문 정의-->
+    <insert id="saveUser" parameterType="com.onemorething.layered.menu.domain.aggregate.entity.User">
+        INSERT INTO USER (userId, userName, userPwd, userBirth, userPhone, userTech1, userTech2, userTech3)
+        VALUES (#{userEmail}, #{userName}, #{userPwd}, #{userBirth}, #{userPhone}, #{userTechStack1}, #{userTechStack2}, #{userTechStack3})
+    </insert>
+
+
 </mapper>

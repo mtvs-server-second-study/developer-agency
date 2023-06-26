@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpSession;
+
 
 @Controller
 @RequestMapping("/account/*")
@@ -37,25 +37,29 @@ public class AccountController {
 
         return "account/signup";
     }
+  
+    @GetMapping("/signupresult")
+    public String signUpResult() {
+
+        return "account/signupresult";
+    }
 
     /* 회원가입에서 입력 값 넘기는 매핑 */
     @PostMapping("/signup")
-    public String signUp(@ModelAttribute("memberDTO") UserDTO userDTO, RedirectAttributes redirectAttributes) {
+    public String signUp(@ModelAttribute("userDTO") UserDTO userDTO, RedirectAttributes rttr) {
         try {
-            //DTO를 이용한 값 전달 (로직실행)
-            signUpService.SignUp(userDTO);
-
-            //리다이렉트 (메인페이지)
-            return "redirect:/";
-        } catch (IllegalArgumentException e){
+            //DTO를 이용한 값 전달 (로직실행), entity로 변환후 DB INSERT
+            signUpService.signUp(userDTO);
+            //리다이렉트 (회원가입 결과 페이지)
+            return "redirect:/account/signupresult";
+        } catch (IllegalArgumentException e) {
             //오류 발생시 회원가입 로직에서 에러메시지 를 받아옴
-            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+            rttr.addFlashAttribute("message", e.getMessage());
 
             //회원가입 페이지로  alert 메시지 표출후 리다이렉트
             return "redirect:/account/signup";
         }
     }
-
 
     @GetMapping("login")
     public String login() {
@@ -97,7 +101,6 @@ public class AccountController {
 
 
             return "이상해";
-////        }
         }
     }
 
