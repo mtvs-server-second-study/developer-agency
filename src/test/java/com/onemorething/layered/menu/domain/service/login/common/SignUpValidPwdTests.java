@@ -1,7 +1,6 @@
-package com.onemorething.layered.menu.domain.service.login;
+package com.onemorething.layered.menu.domain.service.login.common;
 
-import com.onemorething.layered.menu.domain.service.login.UserSignUpService;
-import com.onemorething.layered.menu.domain.service.valid.ValidService;
+import com.onemorething.layered.menu.domain.service.common.ValidService;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
