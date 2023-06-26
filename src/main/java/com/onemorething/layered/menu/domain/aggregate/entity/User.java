@@ -13,6 +13,8 @@ public class User {
     private String userTechStack2;
     private String userTechStack3;
 
+    public User() {};
+
     //회원가입시 UserDTO > user (entity)변환용으로 활용
     public User(UserDTO userDTO){
         this.userEmail=userDTO.getUserEmail();
@@ -25,6 +27,7 @@ public class User {
         this.userTechStack3=userDTO.getUserTech3();
     }
 
+
     public User(String userEmail, String userName, String userPwd, String userBirth, String userPhone, String userTechStack1, String userTechStack2, String userTechStack3) {
         this.userEmail = userEmail;
         this.userName = userName;
@@ -34,6 +37,17 @@ public class User {
         this.userTechStack1 = userTechStack1;
         this.userTechStack2 = userTechStack2;
         this.userTechStack3 = userTechStack3;
+    }
+
+    public User(UserDTO userDTO) {
+        this.userEmail = userDTO.getUserEmail();
+        this.userName = userDTO.getUserName();
+        this.userPwd = userDTO.getUserPwd();
+        this.userBirth = userDTO.getUserBirth();
+        this.userPhone = userDTO.getUserPhone();
+        this.userTechStack1 = userDTO.getUserTech1();
+        this.userTechStack2 = userDTO.getUserTech2();
+        this.userTechStack3 = userDTO.getUserTech3();
     }
 
     public String getUserEmail() {

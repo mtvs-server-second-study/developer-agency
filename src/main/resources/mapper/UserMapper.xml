@@ -23,6 +23,20 @@
         SELECT * FROM USER
     </select>
 
+    <!-- 설명. 아이디 찾기 검증 -->
+    <select id="findId" resultMap="UserResultMap">
+        SELECT userId
+        FROM USER
+        WHERE userName = #{userName} AND userPhone = #{userPhone}
+    </select>
+
+    <!-- 설명. 패스워드 찾기 -->
+    <select id="findPwd" resultMap="UserResultMap">
+        SELECT userPwd
+        FROM USER
+        WHERE userId = #{userEmail} AND userName = #{userName} AND userPhone = #{userPhone}
+    </select>
+
     <select id="login" parameterType="com.onemorething.layered.menu.domain.aggregate.entity.User" resultMap="UserResultMap">
         SELECT
                userId

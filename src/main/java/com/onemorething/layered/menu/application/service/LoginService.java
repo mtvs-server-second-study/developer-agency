@@ -26,6 +26,26 @@ public class LoginService {
         this.userRepository = userRepository;
     }
 
+    public String findId(UserDTO userDTO) {
+
+        /* 설명. 빈칸 확인 및 유효성 검증 */
+        /* 설명. 아이디 찾기 결과 */
+        String result = userRepository.findId(new User(userDTO)).getUserEmail();
+        if (result==null) {
+            return "Not Found";
+        }
+        return result;
+    }
+
+    public String findPwd(UserDTO userDTO) {
+
+        String result = userRepository.findPwd(new User(userDTO)).getUserPwd();
+        if (result == null) {
+            return "Not Found";
+        }
+        return result;
+    }
+
     //로그인 로직
     public boolean LogIn(UserDTO userDTO) {
         // 검증로직

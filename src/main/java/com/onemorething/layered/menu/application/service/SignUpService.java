@@ -7,6 +7,8 @@ import com.onemorething.layered.menu.domain.service.login.UserSignUpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Struct;
+
 @Service
 public class SignUpService {
 
@@ -15,7 +17,6 @@ public class SignUpService {
     // 검증로직
     private final UserSignUpService userSignUpService;
 
-    //의존성 주입
     @Autowired
     public SignUpService(UserSignUpService userSignUpService,UserRepository userRepository) {
         this.userRepository= userRepository;
@@ -36,6 +37,5 @@ public class SignUpService {
 
         // UserImplRepository 호출하여 저장 (entity 활용)
         userRepository.saveUser(user);
-
     }
 }

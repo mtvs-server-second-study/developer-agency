@@ -3,6 +3,7 @@ package com.onemorething.layered.menu.infra.repository;
 import com.onemorething.layered.menu.domain.aggregate.entity.User;
 import com.onemorething.layered.menu.domain.repository.UserRepository;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -27,6 +28,15 @@ public class UserImplRepository implements UserRepository {
     }
 
     @Override
+    public User findId(User user) {
+        return sqlSession.selectOne("UserRepository.findId", user);
+    }
+
+    @Override
+    public User findPwd(User user) {
+        return sqlSession.selectOne("UserRepository.findPwd", user);
+    }
+
     public User logIn(User user) {
 
         return sqlSession.selectOne("UserRepository.login", user);
