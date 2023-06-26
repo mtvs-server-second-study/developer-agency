@@ -15,6 +15,7 @@ public class LoginService {
     private final ValidService validService;
     //repository 의존성 주입
     private final UserRepository userRepository;
+  
     //Mapper 의존성 주입
     private final UserMapper userMapper;
 
@@ -46,23 +47,24 @@ public class LoginService {
     }
 
     //로그인 로직
-    public boolean LogIn(UserDTO userDTO) {
+    public User LogIn(UserDTO userDTO) {
         // 검증로직
         validService.checkValidEmail(userDTO.getUserEmail());
-        validService.checkValidPwd(userDTO.getUserPwd());
 
         // UserDTO -> User(entity) 변환
         User user = userMapper.toEntity(userDTO);
 
-        // UserRepository 호출하여 저장
+        // UserRepository 호출하여 조회
         User loginUser = userRepository.logIn(user);
-        System.out.println("loginUser = " + loginUser);
+
         // 등록된 유저면 로그인 성공으로 간주
         if (loginUser != null) {
             userDTO.setUserEmail(loginUser.getUserEmail());
-            return true;
+            userDTO.setUserName(loginUser.getUserName());
+            return loginUser;
+
         } else {
-            return false;
+            throw new IllegalArgumentException("로그인 실패하셨습니다.");
         }
     }
 }
