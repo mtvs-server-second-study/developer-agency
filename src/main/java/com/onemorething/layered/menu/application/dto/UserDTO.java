@@ -1,5 +1,7 @@
 package com.onemorething.layered.menu.application.dto;
 
+import com.onemorething.layered.menu.domain.aggregate.entity.User;
+
 public class UserDTO {
 
     private String userEmail;
@@ -12,6 +14,8 @@ public class UserDTO {
     private String userTech2;
     private String userTech3;
 
+    public UserDTO() {}
+
     public UserDTO(String userEmail, String userName, String userPwd, String userCheckPwd, String userBirth, String userPhone, String userTech1, String userTech2, String userTech3) {
         this.userEmail = userEmail;
         this.userName = userName;
@@ -22,6 +26,19 @@ public class UserDTO {
         this.userTech1 = userTech1;
         this.userTech2 = userTech2;
         this.userTech3 = userTech3;
+    }
+
+    //엔티티반환
+    public UserDTO(User user) {
+        this.userEmail = user.getUserEmail();
+        this.userName = user.getUserName();
+        this.userPwd = user.getUserPwd();
+        this.userBirth = user.getUserBirth();
+        this.userPhone = user.getUserPhone();
+        this.userTech1 = user.getUserTechStack1();
+        this.userTech2 = user.getUserTechStack2();
+        this.userTech3 = user.getUserTechStack3();
+
     }
 
     public String getUserEmail() {
