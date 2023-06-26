@@ -1,5 +1,6 @@
 package com.onemorething.layered.menu.domain.service.login;
 
+import com.onemorething.layered.menu.domain.service.valid.ValidService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -8,13 +9,13 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class LoginValidPwdTests {
 
-    private UserLogInService userLogInService;
+    private ValidService validService;
 
     private Exception e;
 
     @BeforeEach
     public void setUp() {
-        this.userLogInService = new UserLogInService();
+        this.validService = new ValidService();
         this.e = new Exception();
     }
 
@@ -25,7 +26,7 @@ public class LoginValidPwdTests {
         // when,then
         e= Assertions.assertThrows(
                 IllegalArgumentException.class,
-                () -> userLogInService.loginValidPwd(userPwd)
+                () -> validService.checkValidPwd(userPwd)
         );
         System.out.println(e);
 
@@ -38,7 +39,7 @@ public class LoginValidPwdTests {
         // when,then
         e= Assertions.assertThrows(
                 IllegalArgumentException.class,
-                () -> userLogInService.loginValidPwd(userPwd)
+                () -> validService.checkValidPwd(userPwd)
         );
         System.out.println(e);
 
@@ -51,7 +52,7 @@ public class LoginValidPwdTests {
         // when,then
         e= Assertions.assertThrows(
                 IllegalArgumentException.class,
-                () -> userLogInService.loginValidPwd(userPwd)
+                () -> validService.checkValidPwd(userPwd)
         );
         System.out.println(e);
         // then
@@ -65,7 +66,7 @@ public class LoginValidPwdTests {
         // when,then
         e= Assertions.assertThrows(
                 IllegalArgumentException.class,
-                () -> userLogInService.loginValidPwd(userPwd)
+                () -> validService.checkValidPwd(userPwd)
         );
         System.out.println(e);
 
@@ -78,7 +79,7 @@ public class LoginValidPwdTests {
         // when,then
         e= Assertions.assertThrows(
                 IllegalArgumentException.class,
-                () -> userLogInService.loginValidPwd(userPwd)
+                () -> validService.checkValidPwd(userPwd)
         );
         System.out.println(e);
 
@@ -91,7 +92,7 @@ public class LoginValidPwdTests {
         // when,then
         e= Assertions.assertThrows(
                 IllegalArgumentException.class,
-                () -> userLogInService.loginValidPwd(userPwd)
+                () -> validService.checkValidPwd(userPwd)
         );
         System.out.println(e);
 
@@ -104,7 +105,7 @@ public class LoginValidPwdTests {
         // when, then
         e= Assertions.assertThrows(
                 IllegalArgumentException.class,
-                () -> userLogInService.loginValidPwd(userPwd)
+                () -> validService.checkValidPwd(userPwd)
         );
         System.out.println(e);
 
@@ -117,7 +118,7 @@ public class LoginValidPwdTests {
         // when,then
         e= Assertions.assertThrows(
                 IllegalArgumentException.class,
-                () -> userLogInService.loginValidPwd(userPwd)
+                () -> validService.checkValidPwd(userPwd)
         );
         System.out.println(e);
 
@@ -130,7 +131,7 @@ public class LoginValidPwdTests {
         // when, then
         e= Assertions.assertThrows(
                 IllegalArgumentException.class,
-                () -> userLogInService.loginValidPwd(userPwd)
+                () -> validService.checkValidPwd(userPwd)
         );
         System.out.println(e);
     }
@@ -140,7 +141,7 @@ public class LoginValidPwdTests {
     @ValueSource(strings = {"test1234!@#$", "apple5678!@#$", "asd12!"}) //given
     public void goodPwd(String userPwd) {
         // when
-        String result = userLogInService.loginValidPwd(userPwd);
+        String result = validService.checkValidPwd(userPwd);
         // then
         Assertions.assertEquals("정상", result);
     }
