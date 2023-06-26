@@ -1,4 +1,4 @@
-package com.onemorething.layered.menu.domain.service.valid;
+package com.onemorething.layered.menu.domain.service.common;
 
 import org.springframework.stereotype.Service;
 
@@ -47,18 +47,5 @@ public class ValidService {
         return "정상";
     }
 
-    public String checkValidPhone(String userPhone) {
 
-        String patternPhone = "^01([0|1|6|7|8|9])-([0-9]{3,4})-([0-9]{4})$";
-        /*
-            01로 시작하고 (0,1,6,7,8,9)중 하나의 숫자  - (0~9)중 3개 혹은 4개숫자 - (0~9)중 4개 숫자
-         */
-        if (userPhone == null) {//null값 처리
-            throw new IllegalArgumentException("핸드폰 번호를 입력해 주세요.");
-        } else if (!userPhone.matches(patternPhone)) { //패턴과 일치하지 않을경우
-            throw new IllegalArgumentException("정확한 핸드폰 번호를 입력해 주세요.");
-        } else {
-            return "정상";
-        }
-    }
 }

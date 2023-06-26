@@ -28,19 +28,6 @@ public class UserDTO {
         this.userTech3 = userTech3;
     }
 
-    //엔티티반환
-    public UserDTO(User user) {
-        this.userEmail = user.getUserEmail();
-        this.userName = user.getUserName();
-        this.userPwd = user.getUserPwd();
-        this.userBirth = user.getUserBirth();
-        this.userPhone = user.getUserPhone();
-        this.userTech1 = user.getUserTechStack1();
-        this.userTech2 = user.getUserTechStack2();
-        this.userTech3 = user.getUserTechStack3();
-
-    }
-
     public String getUserEmail() {
         return userEmail;
     }
