@@ -16,7 +16,7 @@ public class UserSignUpService {
 
         if(email=="" || email == null){
 
-            throw new NullPointerException("이메일을 입력하세요.");
+            throw new IllegalArgumentException("이메일을 입력하세요.");
 
         }else if(email.length()>50){
 
@@ -41,7 +41,7 @@ public class UserSignUpService {
             01로 시작하고 (0,1,6,7,8,9)중 하나의 숫자  - (0~9)중 3개 혹은 4개숫자 - (0~9)중 4개 숫자
          */
         if(userPhone==null){//null값 처리
-            throw new NullPointerException("핸드폰 번호를 입력해 주세요.");
+            throw new IllegalArgumentException("핸드폰 번호를 입력해 주세요.");
         }else if(!userPhone.matches(patternPhone)){ //패턴과 일치하지 않을경우
             throw new IllegalArgumentException("정확한 핸드폰 번호를 입력해 주세요.");
         }else{

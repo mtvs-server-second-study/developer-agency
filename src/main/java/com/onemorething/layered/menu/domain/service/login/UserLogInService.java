@@ -14,7 +14,7 @@ public class UserLogInService {
 
         if(userEmail == "") {
 
-            throw new NullPointerException("이메일을 입력하세요.");
+            throw new IllegalArgumentException("이메일을 입력하세요.");
 
         } else if(userEmail.length() > 50) {
 

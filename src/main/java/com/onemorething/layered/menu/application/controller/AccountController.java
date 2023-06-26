@@ -43,7 +43,7 @@ public class AccountController {
 
             //리다이렉트 (메인페이지)
             return "redirect:/";
-        } catch (Exception e){
+        } catch (IllegalArgumentException e){
             //오류 발생시 회원가입 로직에서 에러메시지 를 받아옴
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
 
@@ -54,8 +54,7 @@ public class AccountController {
 
 
     @GetMapping("login")
-    public void login() {
-    }
+    public void login() {}
 
 //    @PostMapping("login")
 //    public String loginMenu(Model model, RedirectAttributes rttr, @RequestParam String userEmail) {
