@@ -31,9 +31,7 @@ public class AccountController {
     }
 
     @GetMapping("/signup")
-    public String signUpFrom() {
-
-        return "account/signup";
+    public void signUpFrom() {
     }
 
     /* 회원가입에서 입력 값 넘기는 매핑 */
@@ -45,7 +43,7 @@ public class AccountController {
 
             //리다이렉트 (메인페이지)
             return "redirect:/";
-        } catch (IllegalArgumentException e){
+        } catch (Exception e){
             //오류 발생시 회원가입 로직에서 에러메시지 를 받아옴
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
 
@@ -56,9 +54,7 @@ public class AccountController {
 
 
     @GetMapping("login")
-    public String login() {
-
-        return "account/login";
+    public void login() {
     }
 
 //    @PostMapping("login")
@@ -96,15 +92,12 @@ public class AccountController {
     }
 
     @GetMapping("findid")
-    public String findId() {
-        return "/account/findid";
-    }
+    public void findId() {}
 
     @PostMapping("findid")
     public String findIdResult(Model model, UserDTO userDTO) {
 
         String email = loginService.findId(userDTO);
-
         String message = userDTO.getUserName() + "님의 id는 " + email + "입니다.";
         model.addAttribute("message", message);
 
@@ -112,9 +105,7 @@ public class AccountController {
     }
 
     @GetMapping("findpassword")
-    public String findPwd() {
-        return "/account/findpassword";
-    }
+    public void findPwd() {}
 
     @PostMapping("findpassword")
     public String findPwdResult(Model model, UserDTO userDTO) {

@@ -23,10 +23,7 @@ public class ContentsController {
     }
 
     @GetMapping("/writing")
-    public String writing() {
-
-        return "contents/writing";
-    }
+    public void writing() {}
 
     /* 글쓰기페이지에서 입력 값 넘기는 매핑 */
     @PostMapping("/writing")
@@ -46,8 +43,5 @@ public class ContentsController {
   
     //메인화면에서 상세페이지로 연결
     @GetMapping("detail")
-    public String detail() {
-
-        return "/contents/detail";
-    }
+    public void detail() {}
 }

@@ -28,6 +28,8 @@ public class LoginService {
 
     public String findId(UserDTO userDTO) {
 
+        /* 설명. 빈칸 확인 및 유효성 검증 */
+        /* 설명. 아이디 찾기 결과 */
         String result = userRepository.findId(new User(userDTO)).getUserEmail();
         if (result==null) {
             return "Not Found";

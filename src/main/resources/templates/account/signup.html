@@ -19,7 +19,7 @@
 
 <h1 align="center">Sign Up</h1>
 <form align="center" action="/account/signup" method="post">
-    Email: <input type="text" name="userEmail"><br>
+    Email: <input type="text" name="userEmail" id="email"><br>
     Password: <input type="password" name="userPwd"><br>
     Repeat password: <input type="password" name="userCheckPwd"><br>
     Name: <input type="text" name="userName"><br>
@@ -29,6 +29,13 @@
     Technology Stack2: <input type="text" name="userTech2"><br>
     Technology Stack3: <input type="text" name="userTech3"><br>
     <input type="submit" value="signup">
+
+    <script>
+        const $email = document.getElementById('email');
+        $email.onchange(() => {
+            fetch('url');
+        });
+    </script>
 </form>
 </body>
 </html>
