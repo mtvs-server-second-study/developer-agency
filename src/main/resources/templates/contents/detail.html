@@ -1,12 +1,716 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en, ko">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Title</title>
-</head>
-<body>
-    <h1 align="center">상세페이지</h1>
-    <button type="button" onclick="location.href='/main'">메인으로</button>
 
+    <link rel="shortcut icon" href="assets/images/fav.jpg">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/fontawsom-all.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+    <style>
+        @font-face {
+            font-family: 'mouse-300';
+            src: url("../fonts/RobotoSlab-Regular.ttf") format("truetype"); }
+        @font-face {
+            font-family: 'mouse-500';
+            src: url("../fonts/RobotoSlab-Bold.ttf") format("truetype"); }
+        /* ===================================== Basic CSS ================================== */
+        * {
+            margin: 0px;
+            padding: 0px;
+            list-style: none; }
+
+        img {
+            height: 298px;
+            width: 220px; }
+
+        a {
+            text-decoration: none;
+            outline: none;
+            color: #444; }
+
+        a:hover {
+            color: #444; }
+
+        ul {
+            margin-bottom: 0;
+            padding-left: 0; }
+
+        a:hover,
+        a:focus,
+        input,
+        textarea {
+            text-decoration: none;
+            outline: none; }
+
+        .center {
+            text-align: center; }
+
+        .left {
+            text-align: left; }
+
+        .right {
+            text-align: right; }
+
+        .cp {
+            cursor: pointer; }
+
+        html, body {
+            height: 100%; }
+
+        p {
+            margin-bottom: 0px;
+            width: 100%; }
+
+        .no-padding {
+            padding: 0px; }
+
+        .no-margin {
+            margin: 0px; }
+
+        .hid {
+            display: none; }
+
+        .top-mar {
+            margin-top: 15px; }
+
+        .h-100 {
+            height: 100%; }
+
+        ::placeholder {
+            color: #747f8a !important;
+            font-size: 13px;
+            opacity: .5 !important; }
+
+        .container-fluid {
+            padding: 0px; }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: "mouse-500", Arial, Helvetica, sans-serif; }
+
+        strong {
+            font-family: "mouse-500", Arial, Helvetica, sans-serif; }
+
+        body {
+            background-color: #f7f7ff !important;
+            font-family: "mouse-300", Arial, Helvetica, sans-serif;
+            color: #6A6A6A; }
+
+        .session-title {
+            padding: 30px;
+            margin: 0px; }
+        .session-title h2 {
+            width: 100%;
+            text-align: center; }
+        .session-title p {
+            max-width: 850px;
+            text-align: center;
+            float: none;
+            margin: auto; }
+        .session-title span {
+            float: right;
+            font-style: italic; }
+
+        .inner-title {
+            padding: 20px;
+            padding-left: 0px;
+            margin-bottom: 30px; }
+        .inner-title h2 {
+            width: 100%;
+            text-align: center;
+            font-size: 2rem;
+            font-family: "slab", Arial, Helvetica, sans-serif; }
+        .inner-title p {
+            width: 100%;
+            text-align: center; }
+
+        .page-nav {
+            padding: 40px;
+            text-align: center;
+            padding-top: 160px; }
+        .page-nav ul {
+            float: none;
+            margin: auto; }
+        .page-nav h2 {
+            font-size: 36px;
+            width: 100%;
+            color: #444; }
+        @media screen and (max-width: 600px) {
+            .page-nav h2 {
+                font-size: 26px; } }
+        .page-nav ul li {
+            float: left;
+            margin-right: 10px;
+            margin-top: 10px;
+            font-size: 16px; }
+        .page-nav ul li i {
+            width: 30px;
+            text-align: center;
+            color: #444; }
+        .page-nav ul li a {
+            color: #444; }
+
+        .btn-success {
+            background-color: #00ab9f;
+            border-color: #00ab9f; }
+        .btn-success:hover {
+            background-color: #00ab9f !important;
+            border-color: #00ab9f !important; }
+        .btn-success:active {
+            background-color: #00ab9f !important;
+            border-color: #00ab9f !important; }
+        .btn-success:focus {
+            background-color: #00ab9f !important;
+            border-color: #00ab9f !important;
+            box-shadow: none !important; }
+
+        .btn-info {
+            background-color: #4f6dcd;
+            border-color: #4f6dcd; }
+        .btn-info:hover {
+            background-color: #4f6dcd !important;
+            border-color: #4f6dcd !important; }
+        .btn-info:active {
+            background-color: #4f6dcd !important;
+            border-color: #4f6dcd !important; }
+        .btn-info:focus {
+            background-color: #4f6dcd !important;
+            border-color: #4f6dcd !important;
+            box-shadow: none !important; }
+
+        .btn {
+            box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+            border-radius: 2px; }
+
+        .form-control:focus {
+            box-shadow: none !important;
+            border: 2px solid  #00a8df; }
+
+        .btn-light {
+            background-color: #FFF;
+            color: #3F3F3F; }
+
+        .collapse.show {
+            display: block !important; }
+
+        .form-control:focus {
+            box-shadow: none;
+            border: 2px solid #0d7a40 !important; }
+
+        .form-control {
+            background-color: #F8F8F8;
+            margin-bottom: 20px; }
+        .form-control:focus {
+            background-color: #FFF;
+            border-color: #CCC; }
+
+        .container {
+            max-width: 1100px; }
+
+        /* ===================================== Header CSS ================================== */
+        .profile-container {
+            max-width: 1050px;
+            margin-top: 30px; }
+        .profile-container .pro-s-cover {
+            background-color: #FFF;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 6px 0 rgba(218, 218, 253, 0.65), 0 2px 6px 0 rgba(206, 206, 238, 0.54); }
+        .profile-container .pro-s-cover img {
+            border-radius: 50px; }
+        .profile-container .pro-s-cover h6 {
+            font-family: "mouse-300", Arial, Helvetica, sans-serif;
+            font-size: 1.3rem;
+            margin-top: 10px;
+            margin-bottom: 0px; }
+        .profile-container .pro-s-cover span {
+            font-size: .8rem; }
+        .profile-container .pro-s-cover p {
+            font-size: .9rem;
+            color: #009b7f;
+            font-weight: 600; }
+        .profile-container .pro-s-cover .num-box {
+            width: 100%;
+            border-top: 1px solid #CCC;
+            margin-top: 10px; }
+        .profile-container .pro-s-cover .num-box .hire {
+            flex: 1;
+            text-align: center;
+            border-right: 1px solid #CCC;
+            padding: 10px 0px; }
+        .profile-container .pro-s-cover .num-box .hire span {
+            font-size: .9rem; }
+        .profile-container .pro-s-cover .num-box .msg {
+            flex: 1;
+            text-align: center;
+            padding: 10px 0px; }
+        .profile-container .pro-s-cover .num-box .msg span {
+            font-size: .9rem; }
+        .profile-container .pro-s-cover .msg-box {
+            width: 100%;
+            padding-top: 20px;
+            border-top: 1px solid #CCC; }
+        .profile-container .pro-s-cover .msg-box .btn {
+            width: 110px;
+            box-shadow: none; }
+        @media screen and (max-width: 865px) {
+            .profile-container .pro-s-cover .msg-box .btn {
+                width: auto; } }
+        @media screen and (max-width: 767px) {
+            .profile-container .pro-s-cover .msg-box .btn {
+                width: 130px; } }
+        @media screen and (max-width: 415px) {
+            .profile-container .pro-s-cover .msg-box .btn {
+                width: 100px; } }
+        .profile-container .pro-s-cover .msg-box .hire {
+            flex: 1;
+            text-align: center; }
+        .profile-container .pro-s-cover .msg-box .msg {
+            flex: 1;
+            text-align: center; }
+        .profile-container .con-cover {
+            background-color: #FFF;
+            padding: 10px;
+            margin-top: 15px;
+            box-shadow: 0 2px 6px 0 rgba(218, 218, 253, 0.65), 0 2px 6px 0 rgba(206, 206, 238, 0.54); }
+        .profile-container .con-cover h4 {
+            font-size: 1.1rem;
+            padding-left: 10px;
+            padding-top: 5px; }
+        .profile-container .con-cover ul li {
+            float: left;
+            padding: 10px; }
+        .profile-container .con-cover .cd-ro {
+            border-top: 1px solid #CCC;
+            padding: 10px; }
+        .profile-container .con-cover .cd-ro span {
+            font-size: .8rem;
+            font-style: italic; }
+        .profile-container .con-cover .cd-ro p {
+            font-size: 1rem;
+            margin-top: 6px; }
+        @media screen and (max-width: 865px) {
+            .profile-container .con-cover .cd-ro p {
+                font-size: .8rem; } }
+        .profile-container .con-cover .cd-ro p i {
+            font-size: 16px;
+            margin-right: 10px; }
+        .profile-container .data-box {
+            padding: 20px;
+            background-color: #FFF;
+            box-shadow: 0 2px 6px 0 rgba(218, 218, 253, 0.65), 0 2px 6px 0 rgba(206, 206, 238, 0.54);
+            margin-bottom: 20px; }
+        .profile-container .data-box h2 {
+            font-size: 1.2rem;
+            border-bottom: 1px solid #CCC;
+            padding-bottom: 10px;
+            margin-bottom: 10px; }
+        .profile-container .data-box p {
+            text-indent: 20px;
+            text-align: justify;
+            font-size: .9rem; }
+        .profile-container .data-box .btn-link li {
+            float: left;
+            margin-top: 15px;
+            padding: 5px 10px;
+            border-radius: 15px;
+            border: 1px solid #888;
+            margin-right: 10px;
+            color: #888; }
+        @media screen and (max-width: 483px) {
+            .profile-container .data-box .btn-link li {
+                margin-right: 5px !important;
+                width: 100%;
+                margin-bottom: 10px; } }
+        .profile-container .data-box .btn-link li i {
+            margin-top: 5px; }
+        .profile-container .data-box .btn-link li a {
+            color: #888; }
+        .profile-container .data-box .exp-row {
+            margin: 0px;
+            border-bottom: 1px solid #CCC;
+            padding-bottom: 10px;
+            margin-bottom: 10px; }
+        .profile-container .data-box .exp-row h6 {
+            width: 100%;
+            font-size: .9rem;
+            margin-bottom: 5px; }
+        .profile-container .data-box .exp-row i {
+            margin-left: 10px;
+            font-size: .8rem; }
+        .profile-container .data-box .exp-row span {
+            color: #009b7f;
+            font-size: .8rem;
+            font-family: "mouse-500", Arial, Helvetica, sans-serif; }
+        .profile-container .data-box .exp-row p {
+            margin-top: 5px;
+            text-indent: 15px; }
+        .profile-container .data-box .last {
+            margin-bottom: 0px;
+            padding-bottom: 0px;
+            border: 0px; }
+        .profile-container .education-detail .sec-title {
+            padding: 20px 0px;
+            text-align: center;
+            font-size: 22px; }
+        .profile-container .education-detail .resume-dat {
+            text-align: center;
+            margin: auto; }
+        @media screen and (max-width: 575px) {
+            .profile-container .education-detail .resume-dat {
+                margin-bottom: 20px; } }
+        .profile-container .education-detail .resume-dat p {
+            width: 100%;
+            text-indent: 0px;
+            margin: auto;
+            text-align: center; }
+        .profile-container .education-detail .resume-dat h6 {
+            text-align: center; }
+        .profile-container .education-detail .service {
+            padding: 20px 0px; }
+        .profile-container .education-detail .service .resume-dat {
+            text-align: center; }
+        .profile-container .education-detail .rgbf {
+            border-left: 1px solid #CCC; }
+        .profile-container .education-detail .rgbf h5 {
+            font-size: 1.2rem; }
+        .profile-container .service-box .service {
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #dadada21; }
+        .profile-container .service-box .service .serv-logo {
+            margin: auto;
+            text-align: center;
+            font-size: 44px; }
+        .profile-container .service-box .service .serv-logo i {
+            margin: auto; }
+        .profile-container .service-box .service .serv-det h5 {
+            font-size: 1rem; }
+
+        .contact-tab {
+            padding: 20px; }
+        .contact-tab iframe {
+            width: 100%;
+            height: 400px; }
+
+        .nav-scroller {
+            position: relative;
+            z-index: 2;
+            height: 2.75rem;
+            overflow-y: hidden;
+        }
+        .nav-img {
+            height: 35px;
+            width: 120px;
+            display : block;
+            margin : auto;
+        }
+
+        .nav-scroller .nav {
+            display: flex;
+            flex-wrap: nowrap;
+            padding-bottom: 1rem;
+            margin-top: -1px;
+            overflow-x: auto;
+            text-align: center;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+
+
+
+
+
+    </style>
+
+
+
+
+</head>
+
+
+
+
+<body>
+<header>
+    <div class="navbar" style="background-color: #e3f2fd;">
+        <div class="container">
+            <a href="#" class="`     navbar-brand d-flex align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24" ></svg>
+                <img class="nav-img" onclick="location.href='/main'" src="https://github.com/mtvs-server-second-study/developer-agency/assets/134987216/70d9d33e-fa97-49fa-824f-c1cecaeec403">
+            </a>
+        </div>
+    </div>
+    </div>
+</header>
+
+
+
+
+
+
+<div class="container-fluid">
+    <div class="container profile-container">
+        <div class="row">
+            <div id="menu-jk" class="col-md-4">
+                <div class="pro-s-cover">
+                    <img src="https://dimg.donga.com/a/160/0/95/5/wps/NEWS/IMAGE/2022/07/12/114400325.1.jpg" alt="">
+                    <h6><b>손흥민</b></h6>
+                    <span>신입(Entry level Developer)</span>
+                    <p>희망연봉 : 40,000,000</p>
+                    <p>Developer</p>
+                    <div class="num-box w-100 d-flex">
+                        <div class="hire">
+                            <b>5+</b> <br>
+                            <span>Projects </span>
+                        </div>
+                        <div class="msg">
+                            <b>2+</b> <br>
+                            <span>Experience</span>
+                        </div>
+                    </div>
+                    <div class="msg-box d-flex">
+                        <div class="hire">
+                            <button type="button" class="btn btn-outline-dark">Follow</button>
+                        </div>
+                        <div class="msg">
+                            <button type="button" class="btn btn-outline-dark">Message</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="con-cover">
+                    <h4>Contact</h4>
+                    <ul class="row no-margin">
+                        <li><i class="fab fa-facebook-f"></i></li>
+                        <li><i class="fab fa-twitter"></i></li>
+                        <li><i class="fab fa-google-plus-g"></i></li>
+                        <li><i class="fab fa-linkedin-in"></i></li>
+                        <li><i class="fab fa-github"></i></li>
+                    </ul>
+                    <div class="cd-ro row no-margin">
+                        <span>Mobile No</span>
+                        <p><i class="fas fa-phone-square"></i>010-7787-5773</p>
+                    </div>
+                    <div class="cd-ro row no-margin">
+                        <span>Email Addreess</span>
+                        <p><i class="fas fa-envelope-square"></i>hmson7@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="data-box">
+                    <h2><b>나를 표현하는 한마디</b></h2>
+                    <p>인생을 즐기는 방법은 끝없는 도전이다!</p>
+                    <div class="btn-ro row no-margin">
+                        <ul class="btn-link">
+                            <li>
+                                <a href=""><i class="fas fa-paper-plane"></i>👍</a>
+                            </li>
+                            <li>
+                                <a href=""><i class="fas fa-cloud-download-alt"></i>👎</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="data-box">
+                    <h2><b>내이름 삼행시</b></h2>
+                    <p>손 : 손오공 닮은</p>
+                    <p>흥 : 흥민이</p>
+                    <p>민 : 민이라고 해</p>
+                    <div class="btn-ro row no-margin">
+                        <ul class="btn-link">
+                            <li>
+                                <a href=""><i class="fas fa-paper-plane"></i>👍</a>
+                            </li>
+                            <li>
+                                <a href=""><i class="fas fa-cloud-download-alt"></i>👎</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+
+                <div class="data-box">
+                    <h2><b>교육 및 프로젝트 경험</b></h2>
+                    <div class="row exp-row">
+                        <h6>Metaverse Academy 2기 수강</h6>
+                        <span>MTVS</span>
+                        <i>2023.04 - 2023.12</i>
+
+                        <p>메타버스 아카데미에서 서버개발 전공을 수료한 경험이 있습니다.</p>
+                    </div>
+                    <div class="row exp-row">
+                        <h6>Business Development</h6>
+                        <span>Microsoft</span>
+                        <i>Apiral 2011 - Present</i>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a urna posuere, aliquet elit in, fermentum ligula. Sed est augue, molestie sed tortor sed, posuere commodo lectus.</p>
+                    </div>
+                    <div class="row exp-row last">
+                        <h6>Business Development</h6>
+                        <span>Microsoft</span>
+                        <i>Apiral 2011 - Present</i>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a urna posuere, aliquet elit in, fermentum ligula. Sed est augue, molestie sed tortor sed, posuere commodo lectus.</p>
+                    </div>
+                </div>
+
+                <div class="data-box education-detail">
+                    <h2><b>Education Details</b></h2>
+                    <div class="service no-margin row">
+                        <div class="col-sm-3 no-padding resume-dat serv-logo">
+                            <h6>2019-2023</h6>
+                            <p>Master Degree</p>
+                        </div>
+                        <div class="col-sm-9 rgbf">
+                            <h5>Cambridg University</h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                    <div class="service no-margin row">
+                        <div class="col-sm-3 no-padding resume-dat serv-logo">
+                            <h6>2013-2015</h6>
+                            <p>Bacholers Degree</p>
+                        </div>
+                        <div class="col-sm-9 rgbf">
+                            <h5>Anna University</h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                    <div class="service no-margin row">
+                        <div class="col-sm-3 no-padding resume-dat serv-logo">
+                            <h6>2013-2015</h6>
+                            <p>High School</p>
+                        </div>
+                        <div class="col-sm-9 rgbf">
+                            <h5>A.M.H.S.S</h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                    <div class="service no-margin row">
+                        <div class="col-sm-3 no-padding resume-dat serv-logo">
+                            <h6>2013-2015</h6>
+                            <p>School</p>
+                        </div>
+                        <div class="col-sm-9 rgbf">
+                            <h5>Anna University</h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="data-box">
+                    <h2><b>GitHub 잔디</b></h2>
+                    <p></p>
+                    <div class="btn-ro row no-margin">
+                        <ul class="btn-link">
+                            <li>
+                                <a href=""><i class="fas fa-paper-plane"></i>👍</a>
+                            </li>
+                            <li>
+                                <a href=""><i class="fas fa-cloud-download-alt"></i>👎</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="data-box service-box">
+                    <h2><b>Services</b></h2>
+                    <div class="service no-margin row">
+                        <div class="col-sm-2 no-padding serv-logo">
+                            <i class="fab fa-delicious"></i>
+                        </div>
+                        <div class="col-sm-10 rgbf serv-det">
+                            <h5>Graphic Design</h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                    <div class="service no-margin row">
+                        <div class="col-sm-2 no-padding serv-logo">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="col-sm-10 rgbf serv-det">
+                            <h5>Graphic Design</h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                    <div class="service no-margin row">
+                        <div class="col-sm-2 no-padding serv-logo">
+                            <i class="fab fa-chrome"></i>
+                        </div>
+                        <div class="col-sm-10 rgbf serv-det">
+                            <h5>Graphic Design</h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                    <div class="service no-margin row">
+                        <div class="col-sm-2 no-padding serv-logo">
+                            <i class="fab fa-android"></i>
+                        </div>
+                        <div class="col-sm-10 rgbf serv-det">
+                            <h5>Graphic Design</h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="data-box contact-tab">
+                    <h2><b>연락하기</b></h2>
+                    <div class="row no-margin">
+                        <div class="col-md-12 no-padding">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3176144.0450019627!2d-107.79423426090409!3d38.97644533805396!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x874014749b1856b7%3A0xc75483314990a7ff!2sColorado%2C+USA!5e0!3m2!1sen!2sin!4v1547222354537"  frameborder="0" style="border:0" allowfullscreen></iframe>
+                        </div>
+                        <div class="col-md-12">
+                            <br>
+                            <div class="row cont-row no-margin">
+                                <div class="col-sm-6">
+                                    <input placeholder="Enter Full Name" type="text" class="form-control form-control-sm">
+                                </div>
+                                <div class="col-sm-6">
+                                    <input placeholder="Enter Email Address" type="text" class="form-control form-control-sm">
+                                </div>
+                            </div>
+                            <div class="row cont-row no-margin">
+                                <div class="col-sm-6">
+                                    <input placeholder="Enter Mobile Number" type="text" class="form-control form-control-sm">
+                                </div>
+
+                            </div>
+                            <div class="row cont-row no-margin">
+                                <div class="col-sm-12">
+                                    <textarea placeholder="Enter your Message" class="form-control form-control-sm" rows="10"></textarea>
+                                </div>
+
+                            </div>
+                            <div class="row cont-row no-margin">
+                                <div class="col-sm-6">
+                                    <button class="btn btn-sm btn-success">Send Message</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
 </body>
+
+<script src="assets/js/jquery-3.2.1.min.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script type="application/javascript" src="assets/js/jquery-scrolltofixed-min.js"></script>
+<script src="assets/js/script.js"></script>
+
+
 </html>
