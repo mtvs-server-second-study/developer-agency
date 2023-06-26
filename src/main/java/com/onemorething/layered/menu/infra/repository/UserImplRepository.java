@@ -26,4 +26,9 @@ public class UserImplRepository implements UserRepository {
         return sqlSession.selectList("UserRepository.getUserList");
     }
 
+    @Override
+    public User logIn(User user) {
+
+        return sqlSession.selectOne("UserRepository.login", user);
+    }
 }

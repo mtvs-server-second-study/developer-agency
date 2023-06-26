@@ -8,4 +8,6 @@ public interface UserRepository {
 
 
     public List<User> getUserList();
+
+    User logIn(User user);
 }

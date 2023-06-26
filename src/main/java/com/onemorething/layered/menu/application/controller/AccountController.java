@@ -15,6 +15,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/account/*")
 @SessionAttributes({"userEmail","userPwd"})    // model.attribute()를 쓰기 위한 어노테이션
@@ -75,25 +77,50 @@ public class AccountController {
 //    }
 
     @PostMapping("/login")
-    public String loginMenu(Model model, WebRequest request, UserDTO userDTO) {
-        // 사용자 입력값 변수에 담기
-        String email = request.getParameter("userEmail");
-        String pwd = request.getParameter("userPwd");
+    public String loginMenu(HttpSession session, UserDTO userDTO) {
+        // 사용자 입력값 가져오기
+        String email = userDTO.getUserEmail();
 
-        // memberDTO 에 값 담기
-        userDTO.setUserEmail(email);
-        userDTO.setUserPwd(pwd);
+        // 로그인 처리
+        if (loginService.LogIn(userDTO)) {
+            // 로그인 성공한 경우
+            // 세션에 사용자 정보 저장
+            session.setAttribute("userEmail", email);
 
-        //로그인 정보 세션에 저장
-//        model.addAttribute("userEmail", userEmail);
-//        rttr.addFlashAttribute("message", "환영합니다.");
+            // 필요한 경우, 환영 메시지 등을 세션에 저장
+            session.setAttribute("message", userDTO + "님 환영합니다.");
 
-        // 서비스 호출
-        loginService.LogIn(userDTO);
+            return "redirect:/";
 
-        // 어떤걸 리턴해야 하는가?
-        return "redirect:/";
+        } else {
+            // 로그인 실패한 경우
+
+
+            return "이상해";
+////        }
+        }
     }
+
+
+            // 로그인 실패한 경우
+            // 실패 처리 로직 수행
+            // ...
+
+//            return "redirect:/login";
+//        // memberDTO 에 값 담기
+//        userDTO.setUserEmail(email);
+//        userDTO.setUserPwd(pwd);
+//
+//        //로그인 정보 세션에 저장
+////        model.addAttribute("userEmail", userEmail);
+////        rttr.addFlashAttribute("message", "환영합니다.");
+//
+//        // 서비스 호출
+//        loginService.LogIn(userDTO);
+//
+//        // 어떤걸 리턴해야 하는가?
+//        return "redirect:/";
+//    }
 
     @GetMapping("findid")
     public String findId() {

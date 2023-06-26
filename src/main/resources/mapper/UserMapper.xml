@@ -14,8 +14,27 @@
         <result property="userTechStack3" column="userTech3" />
     </resultMap>
 
+    <resultMap id="UserResultMap2" type="com.onemorething.layered.menu.domain.aggregate.entity.User">
+        <id property="userEmail" column="userId" />
+        <result property="userPwd" column="userPwd" />
+    </resultMap>
+
     <select id="getUserList" resultMap="UserResultMap">
         SELECT * FROM USER
+    </select>
+
+    <select id="login" parameterType="com.onemorething.layered.menu.domain.aggregate.entity.User" resultMap="UserResultMap">
+        SELECT
+               userId
+             , userName
+             , userPwd
+             , userBirth
+             , userPhone
+             , userTech1
+             , userTech2
+             , userTech3
+        FROM USER
+        WHERE userId = #{ userEmail }
     </select>
 
 </mapper>
