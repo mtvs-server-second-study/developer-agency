@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
@@ -79,15 +80,18 @@ public class AccountController {
     public String loginMenu(HttpSession session, UserDTO userDTO) {
         // 사용자 입력값 가져오기
         String email = userDTO.getUserEmail();
+        String name = userDTO.getUserName();
 
         // 로그인 처리
         if (loginService.LogIn(userDTO)) {
             // 로그인 성공한 경우
             // 세션에 사용자 정보 저장
+            System.out.println(email);
+
             session.setAttribute("userEmail", email);
 
             // 필요한 경우, 환영 메시지 등을 세션에 저장
-            session.setAttribute("message", userDTO + "님 환영합니다.");
+            session.setAttribute("message", userDTO.getUserEmail() + "님 환영합니다.");
 
             return "redirect:/";
 
@@ -119,6 +123,15 @@ public class AccountController {
 //        // 어떤걸 리턴해야 하는가?
 //        return "redirect:/";
 //    }
+
+    /* 로그아웃 */
+    @GetMapping("/logout")
+    public String logout(SessionStatus sessionStatus) {
+
+        sessionStatus.setComplete();
+
+        return "redirect:/";
+    }
 
     @GetMapping("findid")
     public void findId() {}

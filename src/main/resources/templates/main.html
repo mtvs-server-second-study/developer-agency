@@ -69,17 +69,27 @@
 <body>
 
 <header>
-    <div class="navbar" style="background-color: #e3f2fd;">>
+    <div class="navbar" style="background-color: #e3f2fd;">
         <div class="container">
             <a href="#" class="navbar-brand d-flex align-items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
                 <strong>Developer Agency</strong>
             </a>
-            <!--회원가입, 로그인 버튼-->
-            <div class="d-grid gap-2 d-md-block">
-                <button onclick="location.href='/account/signup'" class="btn btn-outline-primary" type="button">회원가입</button>
-                <button onclick="location.href='/account/login'" class="btn btn-outline-info" type="button">로그인</button>
-            </div>
+            <!--회원가입, 로그인 버튼(로그인을 하지 않았을 때 출력)-->
+            <th:block th:if="${session.userEmail == null }">
+                <div class="d-grid gap-2 d-md-block">
+                    <button onclick="location.href='/account/signup'" class="btn btn-outline-primary" type="button">회원가입</button>
+                    <button onclick="location.href='/account/login'" class="btn btn-outline-info" type="button">로그인</button>
+                </div>
+            </th:block>
+
+            <!-- 로그인 되었을 때 로그아웃 버튼과 환영문구 출력 -->
+            <th:block th:if="${session.userEmail != null }">
+                <div class="d-grid gap-2 d-md-block">
+                    <a th:Text="${ session.message }"></a>
+                    <button onclick="location.href='/account/logout'" class="btn btn-outline-danger" type="button">로그아웃</button>
+                </div>
+            </th:block>
         </div>
     </div>
 </header>
