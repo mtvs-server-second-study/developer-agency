@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpSession;
 
@@ -87,6 +87,15 @@ public class AccountController {
 
             return "redirect:/account/login";
         }
+    }
+
+    /* 로그아웃 */
+    @GetMapping("/logout")
+    public String logout(SessionStatus sessionStatus) {
+
+        sessionStatus.setComplete();
+
+        return "redirect:/";
     }
 
     @GetMapping("findid")

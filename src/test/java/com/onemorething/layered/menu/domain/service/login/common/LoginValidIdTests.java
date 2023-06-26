@@ -1,6 +1,6 @@
-package com.onemorething.layered.menu.domain.service.login;
+package com.onemorething.layered.menu.domain.service.login.common;
 
-import com.onemorething.layered.menu.domain.service.valid.ValidService;
+import com.onemorething.layered.menu.domain.service.common.ValidService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
