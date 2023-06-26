@@ -24,7 +24,6 @@ public class UserDTO {
         this.userTech3 = userTech3;
     }
 
-
     public String getUserEmail() {
         return userEmail;
     }

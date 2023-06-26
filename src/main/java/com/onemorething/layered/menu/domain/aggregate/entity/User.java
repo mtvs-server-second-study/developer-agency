@@ -1,5 +1,7 @@
 package com.onemorething.layered.menu.domain.aggregate.entity;
 
+import com.onemorething.layered.menu.application.dto.UserDTO;
+
 public class User {
 
     private String userEmail;
@@ -10,6 +12,18 @@ public class User {
     private String userTechStack1;
     private String userTechStack2;
     private String userTechStack3;
+
+    //회원가입시 UserDTO > user (entity)변환용으로 활용
+    public User(UserDTO userDTO){
+        this.userEmail=userDTO.getUserEmail();
+        this.userName=userDTO.getUserName();
+        this.userPwd=userDTO.getUserPwd();
+        this.userBirth=userDTO.getUserBirth();
+        this.userPhone=userDTO.getUserPhone();
+        this.userTechStack1=userDTO.getUserTech1();
+        this.userTechStack2=userDTO.getUserTech2();
+        this.userTechStack3=userDTO.getUserTech3();
+    }
 
     public User(String userEmail, String userName, String userPwd, String userBirth, String userPhone, String userTechStack1, String userTechStack2, String userTechStack3) {
         this.userEmail = userEmail;
