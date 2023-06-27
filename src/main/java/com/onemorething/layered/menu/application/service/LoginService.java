@@ -21,7 +21,7 @@ public class LoginService {
     private final UserMapper userMapper = new UserMapper();
 
     @Autowired
-    public LoginService(ValidService validService, UserRepository userRepository,UserMapper userMapper, SignUpValidService signUpValidService) {
+    public LoginService(ValidService validService, UserRepository userRepository, SignUpValidService signUpValidService) {
         this.validService = validService;
         this.userRepository = userRepository;
         this.signUpValidService= signUpValidService;
