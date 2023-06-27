@@ -23,7 +23,13 @@
         SELECT * FROM USER
     </select>
 
-    <!-- 설명. 아이디 찾기 검증 -->
+    <!-- 중복검증 로직-->
+    <select id="checkEmail" parameterType="com.onemorething.layered.menu.domain.aggregate.entity.User" resultType="int">
+        SELECT  count(*)
+        FROM USER
+        WHERE userId= #{userEmail}
+    </select>
+    <!-- 설명. 아이디 찾기 -->
     <select id="findId" resultMap="UserResultMap">
         SELECT userId
              , userName

@@ -32,6 +32,11 @@ public class UserImplRepository implements UserRepository {
     }
 
     @Override
+    public int checkEmail(User user){
+        return sqlSession.selectOne("UserRepository.checkEmail",user);
+    }
+
+    @Override
     public List<User> getUserList() {
         return sqlSession.selectList("UserRepository.getUserList");
     }
@@ -51,6 +56,5 @@ public class UserImplRepository implements UserRepository {
 
         return sqlSession.selectOne("UserRepository.login", user);
       }
-
 
 }
