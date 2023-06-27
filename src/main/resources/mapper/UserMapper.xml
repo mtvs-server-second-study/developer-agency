@@ -4,7 +4,7 @@
 
 <mapper namespace="UserRepository">
     <resultMap id="UserResultMap" type="com.onemorething.layered.menu.domain.aggregate.entity.User">
-        <id property="userEmail" column="userId" />
+        <id property="userEmail" column="userEmail" />
         <result property="userName" column="userName" />
         <result property="userPwd" column="userPwd" />
         <result property="userBirth" column="userBirth" />
@@ -40,11 +40,11 @@
     <!-- 설명. 로그인 -->
     <select id="login" parameterType="com.onemorething.layered.menu.domain.aggregate.entity.User" resultMap="UserResultMap">
         SELECT
-               userId
+               userEmail
              , userPwd
              , userName
         FROM USER
-        WHERE userId = #{ userEmail }
+        WHERE userEmail = #{ userEmail }
         AND userPwd = #{ userPwd }
     </select>
 

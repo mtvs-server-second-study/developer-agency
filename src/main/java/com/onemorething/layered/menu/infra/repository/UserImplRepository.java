@@ -3,7 +3,6 @@ package com.onemorething.layered.menu.infra.repository;
 import com.onemorething.layered.menu.domain.aggregate.entity.User;
 import com.onemorething.layered.menu.domain.repository.UserRepository;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

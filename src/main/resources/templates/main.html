@@ -111,8 +111,11 @@
 
     <div class="album py-5 bg-light">
         <div class="container">
-            <!-- 글쓰기 버튼 -->
-            <button onclick="location.href='/contents/writing'" type="button" class="btn btn-dark">글쓰기</button>
+            <!-- 글쓰기 버튼, 로그인 되었을 때만 활성화 -->
+            <th:block th:if="${session.userEmail != null }">
+            <button onclick="location.href='/contents/board'" type="button" class="btn btn-dark">글쓰기</button>
+            </th:block>
+
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 <div class="col">
                     <div class="card shadow-sm">
