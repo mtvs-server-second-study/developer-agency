@@ -1,5 +1,6 @@
 package com.onemorething.layered.menu.domain.service.signup;
 
+import com.onemorething.layered.menu.application.service.SignUpService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

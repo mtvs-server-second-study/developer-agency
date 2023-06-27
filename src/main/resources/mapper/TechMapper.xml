@@ -11,4 +11,5 @@
     <select id="getTechList" resultMap="TechResultMap">
         SELECT * FROM TECHSTACK
     </select>
+    
 </mapper>

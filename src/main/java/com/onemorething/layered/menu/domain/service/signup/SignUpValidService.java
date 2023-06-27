@@ -59,7 +59,6 @@ public class SignUpValidService {
 
     public String checkDuplicateTech(List<String> list){
         Set<String> set = new HashSet<>();
-
         list.stream().filter(value -> !value.equals("없음")).forEach( value -> {
             if (!set.add(value)){
                 throw new IllegalArgumentException("기술 스택이 중복됩니다.");

@@ -15,6 +15,7 @@ import com.onemorething.layered.menu.domain.service.signup.SignUpValidService;
 import com.onemorething.layered.menu.domain.service.common.ValidService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 @Service
+@Transactional
 public class SignUpService {
 
     // repository
@@ -76,10 +78,12 @@ public class SignUpService {
 
 
         // UserImplRepository 호출하여 저장 (entity 활용)
-        IntStream.range(0, skills.size()).forEach(i->{
-            skillRepository.insertSkill(skills.get(i));
-        });
         userRepository.saveUser(user);
+        IntStream.range(0, skills.size()).forEach(i->{
+            if (!skills.get(i).getUserTech().equals("없음")) {
+                skillRepository.insertSkill(skills.get(i));
+            }
+        });
     }
 
     public int checkEmail(UserDTO userDTO){ //중복조회
