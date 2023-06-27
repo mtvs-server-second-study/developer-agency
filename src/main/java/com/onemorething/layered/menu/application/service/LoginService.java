@@ -5,6 +5,7 @@ import com.onemorething.layered.menu.application.dto.UserDTO;
 import com.onemorething.layered.menu.domain.aggregate.entity.User;
 import com.onemorething.layered.menu.domain.repository.UserRepository;
 import com.onemorething.layered.menu.domain.service.common.ValidService;
+import com.onemorething.layered.menu.domain.service.signup.SignUpValidService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,35 +16,60 @@ public class LoginService {
     private final ValidService validService;
     //repository 의존성 주입
     private final UserRepository userRepository;
-  
+
+    private final SignUpValidService signUpValidService;
     //Mapper 의존성 주입
     private final UserMapper userMapper;
 
     @Autowired
-    public LoginService(ValidService validService, UserRepository userRepository,UserMapper userMapper) {
+    public LoginService(ValidService validService, UserRepository userRepository,UserMapper userMapper, SignUpValidService signUpValidService) {
         this.validService = validService;
         this.userRepository = userRepository;
         this.userMapper=userMapper;
+        this.signUpValidService= signUpValidService;
     }
 
-    public String findId(UserDTO userDTO) {
+    public User findId(UserDTO userDTO) {
 
-        /* 설명. 빈칸 확인 및 유효성 검증 */
-        /* 설명. 아이디 찾기 결과 */
-        String result = userRepository.findId(userMapper.toEntity(userDTO)).getUserEmail();
-        if (result==null) {
-            return "Not Found";
+        //검증로직 호출
+        signUpValidService.checkValidName(userDTO.getUserName());
+        signUpValidService.checkValidPhone(userDTO.getUserPhone());
+
+        //entity 변환
+        User user = userMapper.toEntity(userDTO);
+
+        User findUser = userRepository.findId(user);
+        if(findUser != null) {
+            userDTO.setUserEmail(findUser.getUserEmail());
+            userDTO.setUserName(findUser.getUserName());
+
+            return findUser;
+
+        } else {
+            throw new IllegalArgumentException("일치하는 정보가 없습니다");
         }
-        return result;
     }
 
-    public String findPwd(UserDTO userDTO) {
+    public User findPwd(UserDTO userDTO) {
 
-        String result = userRepository.findPwd(userMapper.toEntity(userDTO)).getUserPwd();
-        if (result == null) {
-            return "Not Found";
+        //검증로직 호출
+        validService.checkValidEmail(userDTO.getUserEmail());
+        signUpValidService.checkValidName(userDTO.getUserName());
+        signUpValidService.checkValidPhone(userDTO.getUserPhone());
+
+        //entity 변환
+        User user = userMapper.toEntity(userDTO);
+
+        User userInfo = userRepository.findPwd(user);
+        if(userInfo != null) {
+            userDTO.setUserName(userInfo.getUserName());
+            userDTO.setUserPwd(userInfo.getUserPwd());
+
+            return userInfo;
+
+        } else {
+            throw new IllegalArgumentException("일치하는 정보가 없습니다.");
         }
-        return result;
     }
 
     //로그인 로직

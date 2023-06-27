@@ -26,13 +26,15 @@
     <!-- 설명. 아이디 찾기 검증 -->
     <select id="findId" resultMap="UserResultMap">
         SELECT userId
+             , userName
         FROM USER
         WHERE userName = #{userName} AND userPhone = #{userPhone}
     </select>
 
     <!-- 설명. 패스워드 찾기 -->
     <select id="findPwd" resultMap="UserResultMap">
-        SELECT userPwd
+        SELECT userName
+             , userPwd
         FROM USER
         WHERE userId = #{userEmail} AND userName = #{userName} AND userPhone = #{userPhone}
     </select>
