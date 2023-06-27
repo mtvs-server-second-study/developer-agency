@@ -1,7 +1,10 @@
 package com.onemorething.layered.menu.domain.service.signup;
 
 
+import com.onemorething.layered.menu.application.dto.UserDTO;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class SignUpValidService {
@@ -52,6 +55,13 @@ public class SignUpValidService {
         return "정상";
     }
 
-
+//    public String checkDuplicateTech(List<String> list){
+//        boolean checkDup = list.stream().distinct().count() == list.size();
+//
+//        if (checkDup == true) {
+//            throw new IllegalArgumentException("기술 스택이 중복됩니다.");
+//        }
+//        return "정상";
+//    }
 
 }

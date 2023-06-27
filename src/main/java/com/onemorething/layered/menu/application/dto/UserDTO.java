@@ -1,6 +1,9 @@
 package com.onemorething.layered.menu.application.dto;
 
 import com.onemorething.layered.menu.domain.aggregate.entity.User;
+import com.onemorething.layered.menu.domain.aggregate.enumtype.Proficiency;
+
+import java.util.List;
 
 public class UserDTO {
 
@@ -10,22 +13,20 @@ public class UserDTO {
     private String userCheckPwd;
     private String userBirth;
     private String userPhone;
-    private String userTech1;
-    private String userTech2;
-    private String userTech3;
+    private List<String> userTech;
+    private List<Proficiency> proficiency;
 
     public UserDTO() {}
 
-    public UserDTO(String userEmail, String userName, String userPwd, String userCheckPwd, String userBirth, String userPhone, String userTech1, String userTech2, String userTech3) {
+    public UserDTO(String userEmail, String userName, String userPwd, String userCheckPwd, String userBirth, String userPhone, List<String> userTech, List<Proficiency> proficiency) {
         this.userEmail = userEmail;
         this.userName = userName;
         this.userPwd = userPwd;
         this.userCheckPwd = userCheckPwd;
         this.userBirth = userBirth;
         this.userPhone = userPhone;
-        this.userTech1 = userTech1;
-        this.userTech2 = userTech2;
-        this.userTech3 = userTech3;
+        this.userTech = userTech;
+        this.proficiency = proficiency;
     }
 
     public String getUserEmail() {
@@ -76,28 +77,19 @@ public class UserDTO {
         this.userPhone = userPhone;
     }
 
-    public String getUserTech1() {
-        return userTech1;
+    public List<String> getUserTech() {
+        return userTech;
     }
 
-    public void setUserTech1(String userTech1) {
-        this.userTech1 = userTech1;
+    public void setUserTech(List<String> userTech) {
+        this.userTech = userTech;
     }
 
-    public String getUserTech2() {
-        return userTech2;
+    public List<Proficiency> getProficiency() {
+        return proficiency;
     }
 
-    public void setUserTech2(String userTech2) {
-        this.userTech2 = userTech2;
+    public void setProficiency(List<Proficiency> proficiency) {
+        this.proficiency = proficiency;
     }
-
-    public String getUserTech3() {
-        return userTech3;
-    }
-
-    public void setUserTech3(String userTech3) {
-        this.userTech3 = userTech3;
-    }
-
 }
