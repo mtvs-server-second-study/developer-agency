@@ -25,7 +25,6 @@ public class User {
         this.userTechStack2 = userTechStack2;
         this.userTechStack3 = userTechStack3;
     }
-
     public String getUserEmail() {
         return userEmail;
     }

@@ -33,7 +33,6 @@ public class SignUpService {
     public void signUp(UserDTO userDTO) {
 
         //검증로직 호출
-        validService.checkValidEmail(userDTO.getUserEmail());
         validService.checkValidPwd(userDTO.getUserPwd());
         signUpValidService.checkPwd(userDTO.getUserPwd(), userDTO.getUserCheckPwd());
         signUpValidService.checkValidName(userDTO.getUserName());
@@ -44,5 +43,16 @@ public class SignUpService {
 
         // UserImplRepository 호출하여 저장 (entity 활용)
         userRepository.saveUser(user);
+    }
+
+    public int checkEmail(UserDTO userDTO){ //중복조회
+        //유효성 검증로직
+        validService.checkValidEmail(userDTO.getUserEmail());
+
+        // UserDTO > User(entity) 변환
+        User user=userMapper.toEntity(userDTO);
+
+        // UserImplRepository 이용하여 중복확인
+        return userRepository.checkEmail(user);
     }
 }

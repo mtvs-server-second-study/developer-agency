@@ -10,6 +10,7 @@ import java.util.List;
 public interface UserRepository {
 
     void saveUser(User user); //회원가입에 이용할 saveUser 정의
+    int checkEmail(User user); //중복조회에 이용할 checkEmail 정의
 
     /* 설명. 이용자 명단 전체 조회 */
     List<User> getUserList();

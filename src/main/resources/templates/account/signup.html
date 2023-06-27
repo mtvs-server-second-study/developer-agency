@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>sign Up</title>
 </head>
-<body>
 <script>
     const message = "[[${message}]]";
     //message 변수에 message (signup 에서 오류가 리턴될 경우 값 삽입 아닐경우"")
@@ -14,10 +13,12 @@
         //alert 출력
     }
 </script>
+<body>
 
 <h1 align="center">Sign Up</h1>
 <form align="center" action="/account/signup" method="post">
-    Email: <input type="text" name="userEmail" id="email"><br>
+    Email: <input type="text" name="userEmail" id="email">
+    <button type="button" id="checkEmailButton" onclick="checkEmail()">중복확인</button><br>
     Password: <input type="password" name="userPwd"><br>
     Repeat password: <input type="password" name="userCheckPwd"><br>
     Name: <input type="text" name="userName"><br>
@@ -28,12 +29,42 @@
     Technology Stack3: <input type="text" name="userTech3"><br>
     <input type="submit" value="signup">
 
-    <script>
-        const $email = document.getElementById('email');
-        $email.onchange(() => {
-            fetch('url');
-        });
-    </script>
 </form>
 </body>
+<script>
+    function checkEmail() {
+        const emailInput = document.getElementById("email");
+        const email = emailInput.value;
+
+        const requestBody = {
+            userEmail: email
+        };
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "/account/checkEmailButton", true);
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    const result = xhr.responseText;
+                    if (result === "1") {
+                        // 이메일 중복이면 처리
+                        alert("중복된 이메일입니다.");
+                    } else if(result=="0") {
+                        // 이메일 중복이 아니면 처리
+                        alert("사용 가능한 이메일입니다.");
+                        emailInput.readOnly = true;
+                        document.getElementById("checkEmailButton").disabled = true;
+                    } else{
+                        alert(result);
+                    }
+                } else {
+                    // 요청이 실패한 경우 처리
+                    alert("이메일 중복 조회에 실패하였습니다.");
+                }
+            }
+        };
+        xhr.send(JSON.stringify(requestBody));
+    }
+</script>
 </html>

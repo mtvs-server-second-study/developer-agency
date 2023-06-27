@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 
 @Controller
@@ -47,27 +48,40 @@ public class AccountController {
 
     /* 회원가입에서 입력 값 넘기는 매핑 */
     @PostMapping("/signup")
-    public String signUp(@ModelAttribute("userDTO") UserDTO userDTO, RedirectAttributes rttr) {
-        try {
+    public String signUp(@ModelAttribute("userDTO") UserDTO userDTO, Model model) {
+        try { //(@ModelAttribute("userDTO") 생략가능한 어노테이션
             //DTO를 이용한 값 전달 (로직실행), entity로 변환후 DB INSERT
             signUpService.signUp(userDTO);
             //리다이렉트 (회원가입 결과 페이지)
             return "redirect:/account/signupresult";
         } catch (IllegalArgumentException e) {
             //오류 발생시 회원가입 로직에서 에러메시지 를 받아옴
-            rttr.addFlashAttribute("message", e.getMessage());
-
+            model.addAttribute("message", e.getMessage());
             //회원가입 페이지로  alert 메시지 표출후 리다이렉트
-            return "redirect:/account/signup";
+            return "/account/signup";
         }
     }
+    @ResponseBody
+    @RequestMapping(value = "/checkEmailButton", method = RequestMethod.POST)
+    public String checkEmailButton(@RequestBody UserDTO userDTO) {
 
+        try {
+            int result = signUpService.checkEmail(userDTO);
+
+            if (result == 1) {
+                return "1";
+            } else {
+                return "0";
+            }
+        }catch(IllegalArgumentException e){
+            return e.getMessage();
+        }
+    }
     @GetMapping("login")
     public void login() {}
 
     @PostMapping("/login")
         public String loginMenu(HttpSession session, RedirectAttributes rttr, UserDTO userDTO) {
-
 
         // 로그인 처리
         try {
