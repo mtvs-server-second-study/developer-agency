@@ -16,7 +16,6 @@ public interface UserRepository {
 
     /* 설명. 아이디 찾기 */
     User findId(User user);
-  
     /* 설명. 패스워드 찾기 */
     User findPwd(User user);
 

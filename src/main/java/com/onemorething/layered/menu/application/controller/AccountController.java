@@ -102,26 +102,39 @@ public class AccountController {
     public void findId() {}
 
     @PostMapping("findid")
-    public String findIdResult(Model model, UserDTO userDTO) {
+    public String findIdResult(RedirectAttributes rttr, UserDTO userDTO, Model model) {
 
-        String email = loginService.findId(userDTO);
-        String message = userDTO.getUserName() + "님의 id는 " + email + "입니다.";
-        model.addAttribute("message", message);
+        try {
+            userDTO = userMapper.toDTO(loginService.findId(userDTO));
+            String message = userDTO.getUserName() + "님의 id는 " + userDTO.getUserEmail() + "입니다.";
+            model.addAttribute("result", message);
 
-        return "/account/findidresult";
+            return "/account/findidresult";
+
+        } catch (IllegalArgumentException e) {
+            rttr.addFlashAttribute("message", e.getMessage());
+
+            return "redirect:/account/findid";
+        }
     }
 
     @GetMapping("findpassword")
     public void findPwd() {}
 
     @PostMapping("findpassword")
-    public String findPwdResult(Model model, UserDTO userDTO) {
+    public String findPwdResult(RedirectAttributes rttr, UserDTO userDTO, Model model) {
 
-        String password = loginService.findPwd(userDTO);
-        String message = userDTO.getUserName() + "님의 password는 " + password + "입니다";
-        model.addAttribute("message", message);
+        try {
+            userDTO = userMapper.toDTO(loginService.findPwd(userDTO));
+            String message = userDTO.getUserName() + "님의 password는 " + userDTO.getUserPwd() + "입니다";
+            model.addAttribute("result", message);
 
-        return "/account/findpasswordresult";
+            return "/account/findpasswordresult";
+
+        } catch (IllegalArgumentException e) {
+            rttr.addFlashAttribute("message", e.getMessage());
+        }
+            return "redirect:/account/findpassword";
     }
 
 }
