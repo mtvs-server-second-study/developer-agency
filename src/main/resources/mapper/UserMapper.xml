@@ -4,18 +4,15 @@
 
 <mapper namespace="UserRepository">
     <resultMap id="UserResultMap" type="com.onemorething.layered.menu.domain.aggregate.entity.User">
-        <id property="userEmail" column="userId" />
+        <id property="userEmail" column="userEmail" />
         <result property="userName" column="userName" />
         <result property="userPwd" column="userPwd" />
         <result property="userBirth" column="userBirth" />
         <result property="userPhone" column="userPhone" />
-        <result property="userTechStack1" column="userTech1" />
-        <result property="userTechStack2" column="userTech2" />
-        <result property="userTechStack3" column="userTech3" />
     </resultMap>
 
     <resultMap id="UserResultMap2" type="com.onemorething.layered.menu.domain.aggregate.entity.User">
-        <id property="userEmail" column="userId" />
+        <id property="userEmail" column="userEmail" />
         <result property="userPwd" column="userPwd" />
     </resultMap>
 
@@ -25,7 +22,7 @@
 
     <!-- 설명. 아이디 찾기 검증 -->
     <select id="findId" resultMap="UserResultMap">
-        SELECT userId
+        SELECT userEmail
         FROM USER
         WHERE userName = #{userName} AND userPhone = #{userPhone}
     </select>
@@ -34,25 +31,25 @@
     <select id="findPwd" resultMap="UserResultMap">
         SELECT userPwd
         FROM USER
-        WHERE userId = #{userEmail} AND userName = #{userName} AND userPhone = #{userPhone}
+        WHERE userEmail = #{userEmail} AND userName = #{userName} AND userPhone = #{userPhone}
     </select>
 
     <!-- 설명. 로그인 -->
     <select id="login" parameterType="com.onemorething.layered.menu.domain.aggregate.entity.User" resultMap="UserResultMap">
         SELECT
-               userId
+               userEmail
              , userPwd
              , userName
         FROM USER
-        WHERE userId = #{ userEmail }
+        WHERE userEmail = #{ userEmail }
         AND userPwd = #{ userPwd }
     </select>
 
 
-    <!--    SQL INSERT 연산 쿼리문 정의-->
+    <!-- 설명. 회원가입 -->
     <insert id="saveUser" parameterType="com.onemorething.layered.menu.domain.aggregate.entity.User">
-        INSERT INTO USER (userId, userName, userPwd, userBirth, userPhone, userTech1, userTech2, userTech3)
-        VALUES (#{userEmail}, #{userName}, #{userPwd}, #{userBirth}, #{userPhone}, #{userTechStack1}, #{userTechStack2}, #{userTechStack3})
+        INSERT INTO USER (userEmail, userName, userPwd, userBirth, userPhone)
+        VALUES (#{userEmail}, #{userName}, #{userPwd}, #{userBirth}, #{userPhone})
     </insert>
 
 

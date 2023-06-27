@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="SkillRepository">
+    <resultMap id="SkillResultMap" type="com.onemorething.layered.menu.domain.aggregate.entity.SkillAndTech">
+        <id property="userEmail" column="userEmail" />
+        <id property="techSeq" column="techSeq"/>
+        <result property="userProficiency" column="proficiency" />
+    </resultMap>
+
+    <insert id="insertSKill" parameterType="com.onemorething.layered.menu.domain.aggregate.entity.SkillAndTech">
+        INSERT INTO USERSKILL (userEmail, techSeq, proficiency)
+        VALUES (#{userEmail},
+                (SELECT techSeq FROM TECHSTACK WHERE techName = #{userSkill}),
+                #{userProficiency})
+    </insert>
+
+
+
+</mapper>

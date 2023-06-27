@@ -3,8 +3,10 @@ package com.onemorething.layered.menu.application.controller;
 import com.onemorething.layered.menu.application.dto.UserDTO;
 import com.onemorething.layered.menu.application.service.LoginService;
 import com.onemorething.layered.menu.application.service.SignUpService;
-import com.onemorething.layered.menu.application.service.UserMapper;
+import com.onemorething.layered.menu.application.service.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.web.ServerProperties;
+import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -25,18 +26,27 @@ public class AccountController {
     private final SignUpService signUpService;
     private final LoginService loginService;
 
-    private final UserMapper userMapper;
+    private final UserMapper userMapper = new UserMapper();
 
     @Autowired
-    public AccountController(SignUpService signUpService, LoginService loginService, UserMapper userMapper) {
+    public AccountController(SignUpService signUpService, LoginService loginService) {
 
         this.signUpService = signUpService;
         this.loginService = loginService;
-        this.userMapper = userMapper;
     }
 
     @GetMapping("/signup")
-    public void signUpFrom() {
+    public String signUpFrom(Model model) {
+
+        String[] techOptions = {
+                "기술 스택을 선택해주세요.", "Java", "JavaScript", "Python", "Kotlin", "Swift", "TypeScript",
+                "C", "C++", "ReactJS", "Redux", "VueJS", "AngularJS", "NextJS",
+                "Spring", "NodeJS", "NestJS", "Unity", "Flask", "MySQL", "MongoDB"
+        };
+
+        model.addAttribute("techOptions", techOptions);
+
+        return "account/signup";
     }
   
     @GetMapping("/signupresult")
@@ -49,7 +59,6 @@ public class AccountController {
     @PostMapping("/signup")
     public String signUp(@ModelAttribute("userDTO") UserDTO userDTO, RedirectAttributes rttr) {
         try {
-            //DTO를 이용한 값 전달 (로직실행), entity로 변환후 DB INSERT
             signUpService.signUp(userDTO);
             //리다이렉트 (회원가입 결과 페이지)
             return "redirect:/account/signupresult";
@@ -91,9 +100,9 @@ public class AccountController {
 
     /* 로그아웃 */
     @GetMapping("/logout")
-    public String logout(SessionStatus sessionStatus) {
+    public String logout(HttpSession session) {
 
-        sessionStatus.setComplete();
+        session.invalidate();
 
         return "redirect:/";
     }
