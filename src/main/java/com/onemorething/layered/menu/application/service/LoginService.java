@@ -2,6 +2,7 @@ package com.onemorething.layered.menu.application.service;
 
 
 import com.onemorething.layered.menu.application.dto.UserDTO;
+import com.onemorething.layered.menu.application.service.mapper.UserMapper;
 import com.onemorething.layered.menu.domain.aggregate.entity.User;
 import com.onemorething.layered.menu.domain.repository.UserRepository;
 import com.onemorething.layered.menu.domain.service.common.ValidService;
@@ -16,16 +17,13 @@ public class LoginService {
     private final ValidService validService;
     //repository 의존성 주입
     private final UserRepository userRepository;
-
     private final SignUpValidService signUpValidService;
-    //Mapper 의존성 주입
-    private final UserMapper userMapper;
+    private final UserMapper userMapper = new UserMapper();
 
     @Autowired
-    public LoginService(ValidService validService, UserRepository userRepository,UserMapper userMapper, SignUpValidService signUpValidService) {
+    public LoginService(ValidService validService, UserRepository userRepository, SignUpValidService signUpValidService) {
         this.validService = validService;
         this.userRepository = userRepository;
-        this.userMapper=userMapper;
         this.signUpValidService= signUpValidService;
     }
 
