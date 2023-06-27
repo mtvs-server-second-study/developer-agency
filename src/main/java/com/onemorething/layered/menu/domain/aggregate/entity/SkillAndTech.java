@@ -15,12 +15,6 @@ public class SkillAndTech {
 
     public SkillAndTech() {}
 
-    public SkillAndTech(String userEmail, String userSkill, Proficiency userProficiency) {
-        this.userEmail = userEmail;
-        this.userSkill = userSkill;
-        this.userProficiency = userProficiency;
-    }
-
     public SkillAndTech(String userEmail, int techSeq, List<String> userTech, List<Proficiency> proficiency, String userSkill, Proficiency userProficiency) {
         this.userEmail = userEmail;
         this.techSeq = techSeq;

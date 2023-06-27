@@ -32,13 +32,12 @@ public class AccountController {
     @GetMapping("/signup")
     public String signUpFrom(Model model) {
 
-        String[] techOptions = {
-                "기술 스택을 선택해주세요.", "Java", "JavaScript", "Python", "Kotlin", "Swift", "TypeScript",
-                "C", "C++", "ReactJS", "Redux", "VueJS", "AngularJS", "NextJS",
-                "Spring", "NodeJS", "NestJS", "Unity", "Flask", "MySQL", "MongoDB"
-        };
-
-        model.addAttribute("techOptions", techOptions);
+//        String[] techOptions = {
+//                "기술 스택을 선택해주세요.", "Java", "JavaScript", "Python", "Kotlin", "Swift", "TypeScript",
+//                "C", "C++", "ReactJS", "Redux", "VueJS", "AngularJS", "NextJS",
+//                "Spring", "NodeJS", "NestJS", "Unity", "Flask", "MySQL", "MongoDB"
+//        };
+        model.addAttribute("techList", signUpService.getTechList());
 
         return "account/signup";
     }
@@ -59,6 +58,7 @@ public class AccountController {
             return "redirect:/account/signupresult";
         } catch (IllegalArgumentException e) {
             //오류 발생시 회원가입 로직에서 에러메시지 를 받아옴
+            model.addAttribute("techList", signUpService.getTechList());
             model.addAttribute("message", e.getMessage());
             //회원가입 페이지로  alert 메시지 표출후 리다이렉트
             return "/account/signup";
