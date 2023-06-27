@@ -91,9 +91,9 @@ public class AccountController {
 
     /* 로그아웃 */
     @GetMapping("/logout")
-    public String logout(SessionStatus sessionStatus) {
+    public String logout(HttpSession session) {
 
-        sessionStatus.setComplete();
+        session.invalidate();
 
         return "redirect:/";
     }
