@@ -7,6 +7,5 @@ import java.util.List;
 
 @Component
 public interface TechRepository {
-
     List<Tech> getTechList();
 }

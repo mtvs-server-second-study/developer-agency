@@ -17,7 +17,6 @@ public class BoardService {
     }
     public void fileUpload(BoardDTO boardDTO) {
 
-        // entity 변환
         Board newBoard = new Board(boardDTO.getUserEmail(), boardDTO.getTitle(), boardDTO.getThreePoem(),
                 boardDTO.getSalary(), boardDTO.getProfile(), boardDTO.getGitContribution());
 

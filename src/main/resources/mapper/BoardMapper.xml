@@ -3,19 +3,6 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="BoardRepository">
-
-<!--    <resultMap id="UserResultMap" type="com.onemorething.layered.menu.domain.aggregate.entity.User">-->
-
-<!--        <association property=""></association>-->
-<!--    </resultMap>-->
-<!--    <resultMap id="BoardResultMap" type="com.onemorething.layered.menu.domain.aggregate.entity.Board">-->
-<!--        <id property="userEmail" column="userId" />-->
-<!--        <result property="title" column="title" />-->
-<!--        <result property="threePoem" column="threePoem" />-->
-<!--        <result property="salary" column="salary" />-->
-<!--        <result property="profile" column="profile" />-->
-<!--    </resultMap>-->
-
     <resultMap id="BoardResultMap" type="com.onemorething.layered.menu.domain.aggregate.entity.Board">
         <result property="title" column="title" />
         <result property="threePoem" column="threePoem" />
@@ -25,7 +12,6 @@
         <association property="userEmail" resultMap="UserRepository.UserResultMap" />
     </resultMap>
 
-    <!-- 설명. 글쓰기 저장 -->
     <insert id="save" parameterType="com.onemorething.layered.menu.domain.aggregate.entity.Board">
         INSERT INTO INTRODUCE (userEmail, title, threePoem, salary, profile, gitContribution)
         VALUES (#{userEmail}, #{title}, #{threePoem}, #{salary}, #{profile}, #{gitContribution})

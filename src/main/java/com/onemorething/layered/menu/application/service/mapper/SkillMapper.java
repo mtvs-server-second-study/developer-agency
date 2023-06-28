@@ -28,17 +28,4 @@ public class SkillMapper {
         return skillAndTech;
     }
 
-//    public UserDTO techTouserDto(SkillAndTech skill){
-//        UserDTO userDTO = new UserDTO(skill.getUserTech1(),
-//                skill.getProficiency1(),
-//                skill.getUserTech2(),
-//                skill.getProficiency2(),
-//                skill.getUserTech3(),
-//                skill.getProficiency3());
-//        return userDTO;
-//    }
-
-
-
-
 }
