@@ -309,3 +309,20 @@ input[type=password]::placeholder {
 * {
     box-sizing: border-box;
 }
+
+#birth {width: 350px;
+    height: 50px;
+    text-align: center;
+    background-color: #f6f6f6;;
+    border: none;
+    color: #cccccc;
+
+}
+
+#checkEmailButton {
+    color: #888888;
+    solid-color: #888888;
+    border: #888888 solid 1px;
+    margin-left: 250px;
+
+}
