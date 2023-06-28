@@ -53,7 +53,7 @@ public class SignUpService {
         IntStream.range(0, teches.size()).forEach(i -> {
             techList.add(teches.get(i).getTechName());
         });
-        techList.add(0,"기술 스택을 선택해주세요.");
+        techList.add(0,"Select Technology Stack");
         return techList;
     }
 
