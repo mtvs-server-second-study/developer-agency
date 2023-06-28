@@ -87,6 +87,13 @@ public class ContentsController {
         return "contents/result";
     }
 
+
+
+    //메인화면에서 상세페이지로 연결
     @GetMapping("detail")
-    public void detail() {}
+    public String detail() {
+
+        return "/contents/detail";
+    }
+
 }
