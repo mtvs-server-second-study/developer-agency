@@ -1,53 +1,134 @@
-# **개발자 분양합니다.**
+## OneMoreThing
 
-## **필수 기능**
+### Repositories   [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fmtvs-server-second-study%2Fdeveloper-agency&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 
-### **검색 - 로그인/회원가입 - 메인 홈 - 상세 페이지, 마이페이지**
+---
+# DEVELNOM (Development + 미친놈)
+> **MTVS-SERVER-2ND-ONEMORETHING** <br/> **개발기간: 2023.06.21 ~ 2022.06.29**
 
-### **DB 설계 - DB, 회원DB , 언어 DB**
+---
+## Team Member Introduction
+|김종완|남효정|이주원|
+|--------|--------|-------|
+|<img width="160px" src="https://avatars.githubusercontent.com/u/115992753?v=4" />| <img width="160px" src="https://avatars.githubusercontent.com/u/122511826?v=4" /> | <img width="160px" src="https://avatars.githubusercontent.com/u/134987216?v=4" /> |
+|<center>[@Subak-Uncle](https://github.com/Subak-Uncle)| <center>[@namhyojeong](https://github.com/namhyojeong)| <center>[@juunewon](https://github.com/juunewon)                                |
 
-## **부가 기능**
+| 정재민                                            | 조명환                                           |
+|------------------------------------------------|-----------------------------------------------|
+|<img width="160px" src="https://avatars.githubusercontent.com/u/125876896?v=4" />|<img width="160px" src="https://avatars.githubusercontent.com/u/114536581?v=4" />                                               |
+| <center>[@devJaem](https://github.com/devJaem) | <center>[@MyeongHwan](https://github.com/ChoMyeongHwan) |
 
-회원가입 인증/주소 입력(카카오 주소 검색)/ 카카오 로그인/ 네이버 로그인/ 깃허브 로그인 / 링크드인 -  네이버 챗봇/바빌론
+---
+## Project Introduction
 
-- [개발자 채용](https://www.rocketpunch.com/people)
-- [개발자 스택 기준 채용](https://holaworld.io/)
+### 디벨놈은 개발자들에게 다음과 같은 기능을 제공합니다.
 
-## 파트 분배
+### 자기소개 프로필
+- 개발자들은 회원가입을 진행합니다.
+- 자신의 프로필을 작성하여 전문적인 경력, 기술 스택, 프로젝트 경험 등을 소개할 수 있습니다.
 
 ---
 
-- 로그인/회원가입 : 정재민, 남효정
-- 메인/상세페이지/검색 : 김종완, 이주원, 조명환
+## Getting Started Guide
+### 요구사항
+For building and running the application you need:
+
+- [MySQL8.0.33](https://dev.mysql.com/downloads/mysql/)
+- [Strapi 3.6.6](https://www.npmjs.com/package/strapi/v/3.6.6)
 
 ---
 
-## 플로우차트
-main -> 로그인/회원가입 -> 로그인 -> 메인/홈 -> 상세페이지
-                                        -> 마이페이지
+## Stacks 🐈
 
-/common/util - 부가기능 ex) 파일 읽기
-/configuration - 실행, ContextConfiguration
-/database - mybatis (SQL)
+### 개발환경
+<img src="https://img.shields.io/badge/Intelii J-000000?style=for-the-badge&logo=intellijidea&logoColor=white">
+<img src="https://img.shields.io/badge/GitHub-000000?style=for-the-badge&logo=github&logoColor=white">
 
-/menu/application/
-/controller - 서비스 매핑 (분배) 보내고 받아와서 모델에 담는다
-/dto - application 내의 데이터 이동
-/service - 로직검증호출
+### 구성
+![npm](https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
 
-/menu/domain/aggregate -도메인 내부의 데이터 전송
-/entity --db에 저장할 단위를 만들어줌
-/enumtype Y N 만 있음
-/vo 실제 예외처리 로직
+### 사용언어
+![JS](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=Javascript&logoColor=white)
+![springboot](https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)
+![MYSQL](https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
 
-/exception -예외검증 (호출만)
-/repository - 인터페이스 (인프라에 상속시켜줌, 의존성 역전)
-/service - 인터페이스 (인프라에 상속시켜줌, 의존성 역전) ,
-/valid - 검증 
+### 소통수단
+<img src="https://img.shields.io/badge/discord-5865F2?style=for-the-badge&logo=discord&logoColor=white">
+<img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white">
 
-/menu/infra
-/repository - DB랑 직접적인 연결만 
-/service- 서비스 인터페이스를 오버라이딩
-## 참고 사이트
+---
+## Screen Layout 📺
+[화면구성도](https://github.com/mtvs-server-second-study/developer-agency/wiki/Screen-Layout)
 
-- [https://inpa.tistory.com/entry/CSS-💍-로그인-회원가입-페이지-스타일-🖌️-모음](https://inpa.tistory.com/entry/CSS-%F0%9F%92%8D-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85-%ED%8E%98%EC%9D%B4%EC%A7%80-%EC%8A%A4%ED%83%80%EC%9D%BC-%F0%9F%96%8C%EF%B8%8F-%EB%AA%A8%EC%9D%8C)
+---
+## Main Function 📦
+
+### ⭐️ 회원가입
+- 간단한 회원가입
+- 향후 추가 API를 활용하여 기능업데이트 예정
+
+### ⭐️ 프로필(게시물) 작성
+- 프로필 작성만으로 이력서처럼 활용할수 있도록 DATA 변환 구축
+- 프로필사진, 깃허브 잔디 업로드 지원
+
+---
+## Architecture
+[Architecture](https://github.com/mtvs-server-second-study/developer-agency/wiki/Architecture)
+
+[Reference](https://velog.io/@hanblueblue/%EB%B2%88%EC%97%AD-Layered-Architecture)
+
+---
+## directory tree
+```bash
+├─.github
+├─.idea
+├─build
+└─src
+    ├─main
+    │  ├─java
+    │  │  └─com
+    │  │      └─onemorething
+    │  │          └─layered
+    │  │              ├─configuration
+    │  │              └─menu
+    │  │                  ├─application
+    │  │                  │  ├─controller //각 기능 컨트롤러 모음
+    │  │                  │  ├─dto //DTO 구현 디렉토리
+    │  │                  │  └─service  //실제 로직 수행 클래스
+    │  │                  │      └─mapper //DTO Entity 매퍼 클래스
+    │  │                  ├─domain
+    │  │                  │  ├─aggregate
+    │  │                  │  │  ├─entity //엔티티 집합
+    │  │                  │  │  ├─enumtype //기술 숙련도 Enum
+    │  │                  │  ├─repository //infra/repository  인터페이스 클래스
+    │  │                  │  └─service
+    │  │                  │      ├─common //로그인,회원가입 유효성 로직 (공통)
+    │  │                  │      └─signup //회원가입 유효성 로직
+    │  │                  └─infra
+    │  │                      └─repository //저장장치에 접근하는 Domain/repository를 상속받은 클래스 모음
+    │  └─resources
+    │      ├─mapper //SQLMapper 보관
+    │      ├─static
+    │      │  ├─css // CSS 보관폴더
+    │      │  └─js //JS 보관폴더
+    │      └─templates
+    │          ├─account //회원가입, 로그인 관련 ㅠㅔ이지
+    │          └─contents // 게시물 관련 페이지
+    └─test //Test 코드 구현
+        └─java
+            └─com
+                └─onemorething
+                    └─layered
+                        └─menu
+                            ├─application
+                            │  ├─controller
+                            │  └─service
+                            └─domain
+                                └─service
+                                    ├─common
+                                    ├─login
+                                    │  ├─common
+                                    │  └─signup
+                                    └─signup
+
+```
