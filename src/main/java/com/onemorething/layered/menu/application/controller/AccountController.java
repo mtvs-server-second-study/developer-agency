@@ -32,13 +32,12 @@ public class AccountController {
     @GetMapping("/signup")
     public String signUpFrom(Model model) {
 
-        String[] techOptions = {
-                "기술 스택을 선택해주세요.", "Java", "JavaScript", "Python", "Kotlin", "Swift", "TypeScript",
-                "C", "C++", "ReactJS", "Redux", "VueJS", "AngularJS", "NextJS",
-                "Spring", "NodeJS", "NestJS", "Unity", "Flask", "MySQL", "MongoDB"
-        };
-
-        model.addAttribute("techOptions", techOptions);
+//        String[] techOptions = {
+//                "기술 스택을 선택해주세요.", "Java", "JavaScript", "Python", "Kotlin", "Swift", "TypeScript",
+//                "C", "C++", "ReactJS", "Redux", "VueJS", "AngularJS", "NextJS",
+//                "Spring", "NodeJS", "NestJS", "Unity", "Flask", "MySQL", "MongoDB"
+//        };
+        model.addAttribute("techList", signUpService.getTechList());
 
         return "account/signup";
     }
@@ -51,7 +50,7 @@ public class AccountController {
 
     /* 회원가입에서 입력 값 넘기는 매핑 */
     @PostMapping("/signup")
-    public String signUp(@ModelAttribute("userDTO") UserDTO userDTO, HttpSession session, RedirectAttributes rttr) {
+    public String signUp(@ModelAttribute("userDTO") UserDTO userDTO, HttpSession session, RedirectAttributes rttr, Model model) {
         try { //(@ModelAttribute("userDTO") 생략가능한 어노테이션
 
             //DTO를 이용한 값 전달 (로직실행), entity로 변환후 DB INSERT
@@ -62,6 +61,7 @@ public class AccountController {
         } catch (IllegalArgumentException e) {
 
             //오류 발생시 회원가입 로직에서 에러메시지 를 받아옴
+            model.addAttribute("techList", signUpService.getTechList());
             rttr.addFlashAttribute("message", e.getMessage());
 
             //회원가입 페이지로  alert 메시지 표출후 리다이렉트

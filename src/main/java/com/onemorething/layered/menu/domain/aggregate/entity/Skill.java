@@ -1,14 +1,16 @@
 package com.onemorething.layered.menu.domain.aggregate.entity;
 
+import com.onemorething.layered.menu.domain.aggregate.enumtype.Proficiency;
+
 public class Skill {
 
     private String userEmail;
     private String userTech;
-    private String userProficiency;
+    private Proficiency userProficiency;
 
     public Skill() {}
 
-    public Skill(String userEmail, String userTech, String userProficiency) {
+    public Skill(String userEmail, String userTech, Proficiency userProficiency) {
         this.userEmail = userEmail;
         this.userTech = userTech;
         this.userProficiency = userProficiency;
@@ -30,11 +32,11 @@ public class Skill {
         this.userTech = userTech;
     }
 
-    public String getUserProficiency() {
+    public Proficiency getUserProficiency() {
         return userProficiency;
     }
 
-    public void setUserProficiency(String userProficiency) {
+    public void setUserProficiency(Proficiency userProficiency) {
         this.userProficiency = userProficiency;
     }
 }

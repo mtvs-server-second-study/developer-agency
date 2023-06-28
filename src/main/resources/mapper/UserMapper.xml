@@ -26,6 +26,7 @@
         FROM USER
         WHERE userEmail= #{userEmail}
     </select>
+
     <!-- 설명. 아이디 찾기 -->
     <select id="findId" resultMap="UserResultMap">
         SELECT userId

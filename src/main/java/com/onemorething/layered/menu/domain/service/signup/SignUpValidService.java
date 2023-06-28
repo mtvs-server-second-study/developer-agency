@@ -4,7 +4,9 @@ package com.onemorething.layered.menu.domain.service.signup;
 import com.onemorething.layered.menu.application.dto.UserDTO;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class SignUpValidService {
@@ -55,13 +57,15 @@ public class SignUpValidService {
         return "정상";
     }
 
-//    public String checkDuplicateTech(List<String> list){
-//        boolean checkDup = list.stream().distinct().count() == list.size();
-//
-//        if (checkDup == true) {
-//            throw new IllegalArgumentException("기술 스택이 중복됩니다.");
-//        }
-//        return "정상";
-//    }
+    public String checkDuplicateTech(List<String> list){
+        Set<String> set = new HashSet<>();
+        list.stream().filter(value -> !value.equals("없음")).forEach( value -> {
+            if (!set.add(value)){
+                throw new IllegalArgumentException("기술 스택이 중복됩니다.");
+            }
+        });
+
+        return "정상";
+    }
 
 }

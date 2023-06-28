@@ -1,13 +1,13 @@
-package com.onemorething.layered.menu.domain.aggregate.entity;
+package com.onemorething.layered.menu.application.dto;
 
-public class Tech {
+public class TechDTO {
 
     private int techSeq;
     private String techName;
 
-    public Tech() {}
+    public TechDTO() {}
 
-    public Tech(int techSeq, String techName) {
+    public TechDTO(int techSeq, String techName) {
         this.techSeq = techSeq;
         this.techName = techName;
     }
