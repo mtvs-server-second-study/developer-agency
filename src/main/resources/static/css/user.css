@@ -2,7 +2,6 @@
 
 
 
-/* BASIC */
 body.back {
     background-color: #56baed;
 }
@@ -109,7 +108,6 @@ h2.active {
     border-bottom: 2px solid #5fbae9;
 }
 
-/* FORM TYPOGRAPHY */
 input[type=button], input[type=submit], input[type=reset] {
     background-color: #56baed;
     border: none;
@@ -215,7 +213,6 @@ input[type=password]::placeholder {
     }
 }
 
-/* Simple CSS3 Fade-in Animation */
 @-webkit-keyframes fadeIn {
     from {
         opacity: 0;

@@ -4,7 +4,9 @@ package com.onemorething.layered.menu.domain.service.signup;
 import com.onemorething.layered.menu.application.dto.UserDTO;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class SignUpValidService {
@@ -34,9 +36,6 @@ public class SignUpValidService {
     public String checkValidPhone(String userPhone) {
 
         String patternPhone = "^01([0|1|6|7|8|9])-([0-9]{3,4})-([0-9]{4})$";
-        /*
-            01로 시작하고 (0,1,6,7,8,9)중 하나의 숫자  - (0~9)중 3개 혹은 4개숫자 - (0~9)중 4개 숫자
-         */
         if (userPhone == "" || userPhone == null) {//null값 처리
             throw new IllegalArgumentException("핸드폰 번호를 입력해 주세요.");
         } else if (!userPhone.matches(patternPhone)) { //패턴과 일치하지 않을경우
@@ -46,7 +45,6 @@ public class SignUpValidService {
         }
     }
 
-    /* 설명. 비밀번호 재확인 로직*/
     public String checkPwd(String pwd1, String pwd2) {
 
         if (!(pwd1.trim().equals(pwd2))) {
@@ -55,13 +53,15 @@ public class SignUpValidService {
         return "정상";
     }
 
-//    public String checkDuplicateTech(List<String> list){
-//        boolean checkDup = list.stream().distinct().count() == list.size();
-//
-//        if (checkDup == true) {
-//            throw new IllegalArgumentException("기술 스택이 중복됩니다.");
-//        }
-//        return "정상";
-//    }
+    public String checkDuplicateTech(List<String> list){
+        Set<String> set = new HashSet<>();
+        list.stream().filter(value -> !value.equals("없음")).forEach( value -> {
+            if (!set.add(value)){
+                throw new IllegalArgumentException("기술 스택이 중복됩니다.");
+            }
+        });
+
+        return "정상";
+    }
 
 }

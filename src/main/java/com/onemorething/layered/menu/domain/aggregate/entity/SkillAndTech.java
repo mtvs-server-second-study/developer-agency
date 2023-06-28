@@ -15,12 +15,6 @@ public class SkillAndTech {
 
     public SkillAndTech() {}
 
-    public SkillAndTech(String userEmail, String userSkill, Proficiency userProficiency) {
-        this.userEmail = userEmail;
-        this.userSkill = userSkill;
-        this.userProficiency = userProficiency;
-    }
-
     public SkillAndTech(String userEmail, int techSeq, List<String> userTech, List<Proficiency> proficiency, String userSkill, Proficiency userProficiency) {
         this.userEmail = userEmail;
         this.techSeq = techSeq;
@@ -40,10 +34,6 @@ public class SkillAndTech {
 
     public int getTechSeq() {
         return techSeq;
-    }
-
-    public void setTechSeq(int techSeq) {
-        this.techSeq = techSeq;
     }
 
     public List<String> getUserTech() {
@@ -66,16 +56,10 @@ public class SkillAndTech {
         return userSkill;
     }
 
-    public void setUserSkill(String userSkill) {
-        this.userSkill = userSkill;
-    }
 
     public Proficiency getUserProficiency() {
         return userProficiency;
     }
 
-    public void setUserProficiency(Proficiency userProficiency) {
-        this.userProficiency = userProficiency;
-    }
 }
 

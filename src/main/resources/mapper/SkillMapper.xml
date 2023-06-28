@@ -3,16 +3,16 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="SkillRepository">
-    <resultMap id="SkillResultMap" type="com.onemorething.layered.menu.domain.aggregate.entity.SkillAndTech">
+    <resultMap id="SkillResultMap" type="com.onemorething.layered.menu.domain.aggregate.entity.Skill">
         <id property="userEmail" column="userEmail" />
         <id property="techSeq" column="techSeq"/>
         <result property="userProficiency" column="proficiency" />
     </resultMap>
 
-    <insert id="insertSKill" parameterType="com.onemorething.layered.menu.domain.aggregate.entity.SkillAndTech">
+    <insert id="insertSkill" parameterType="com.onemorething.layered.menu.domain.aggregate.entity.Skill">
         INSERT INTO USERSKILL (userEmail, techSeq, proficiency)
         VALUES (#{userEmail},
-                (SELECT techSeq FROM TECHSTACK WHERE techName = #{userSkill}),
+                (SELECT techSeq FROM TECHSTACK WHERE techName = #{userTech}),
                 #{userProficiency})
     </insert>
 
