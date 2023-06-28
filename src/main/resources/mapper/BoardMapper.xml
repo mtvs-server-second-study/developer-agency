@@ -13,7 +13,6 @@
         <association property="user" resultMap="UserResultMap" />
         <collection property="userSkills" resultMap="SkillResultMap"/>
     </resultMap>
-    
     <resultMap id="UserResultMap" type="com.onemorething.layered.menu.domain.aggregate.entity.User">
         <id property="userEmail" column="userEmail"></id>
         <result property="userName" column="userName"></result>
@@ -33,7 +32,7 @@
     </insert>
 
     <select id="getBoardList" resultType="com.onemorething.layered.menu.domain.aggregate.entity.BoardAndUserAndSkill">
-        SELECT b.boardSeq, b.title, b.threePoem, b.salary, b.profile, b.gitContribution,
+        SELECT b.boardSeq AS boardSeq, b.title, b.threePoem, b.salary, b.profile, b.gitContribution,
                b.userEmail, u.userName,
                us.techSeq, ts.techName, us.proficiency
         FROM Board b

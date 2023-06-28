@@ -25,8 +25,8 @@ public class BoardService {
         boardRepository.save(newBoard);
     }
 
-    public BoardAndUserAndSkill getBoardList(){
-
-        return boardRepository.getBoardList();
-    }
+//    public BoardAndUserAndSkill getBoardList(){
+//
+//        return boardRepository.getBoardList();
+//    }
 }

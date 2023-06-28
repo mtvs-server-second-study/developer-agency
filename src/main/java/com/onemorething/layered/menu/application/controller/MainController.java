@@ -25,10 +25,10 @@ public class MainController {
         return "main"; //html 이름
     }
 
-    @GetMapping("/main")
-    public String getBoardList() {
-
-        System.out.println(boardService.getBoardList());
-        return "main";
-    }
+//    @GetMapping("/main")
+//    public String getBoardList() {
+//
+//        System.out.println(boardService.getBoardList());
+//        return "main";
+//    }
 }

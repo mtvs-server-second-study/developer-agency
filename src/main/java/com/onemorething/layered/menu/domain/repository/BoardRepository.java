@@ -6,5 +6,5 @@ import com.onemorething.layered.menu.domain.aggregate.entity.BoardAndUserAndSkil
 public interface BoardRepository {
     void save(Board board);
 
-    BoardAndUserAndSkill getBoardList();
+//    BoardAndUserAndSkill getBoardList();
 }

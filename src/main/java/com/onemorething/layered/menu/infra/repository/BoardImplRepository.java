@@ -31,8 +31,8 @@ public class BoardImplRepository implements BoardRepository {
         }
     }
 
-    @Override
-    public BoardAndUserAndSkill getBoardList() {
-        return sqlSession.selectOne("BoardRepository.getBoardList");
-    }
+//    @Override
+//    public BoardAndUserAndSkill getBoardList() {
+//        return sqlSession.selectOne("BoardRepository.getBoardList");
+//    }
 }
