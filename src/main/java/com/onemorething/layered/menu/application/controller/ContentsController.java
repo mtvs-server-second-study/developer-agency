@@ -39,10 +39,14 @@ public class ContentsController {
                              Model model,
                              HttpSession session) {
 
-        String root = System.getProperty("user.dir");
+        // 파일 저장 루트 가져오기
+        String root = new File("src/main/resources/static").getAbsolutePath();
+
+        // 현재 실행 중인 파일의 작업 디렉토리를 가져옴
         String filePath = root + "/profileImg";
         String filePath2 = root + "/gitContribution";
 
+        // 파일 저장 객체 생성
         File dir = new File(filePath);
         File dir2 = new File(filePath2);
         if (!dir.exists()) {
@@ -61,12 +65,12 @@ public class ContentsController {
         String savedName = UUID.randomUUID().toString().replaceAll("-", "") + ext;
         String savedName2 = UUID.randomUUID().toString().replaceAll("-", "") + ext2;
 
-        String path = filePath + "/" + savedName;
-        String path2 = filePath2 + "/" + savedName2;
+        String path = "/profileImg" + "/" + savedName;
+        String path2 = "/gitContribution" + "/" + savedName2;
 
         try {
-            profile.transferTo(new File(path));
-            gitContribution.transferTo(new File(path2));
+            profile.transferTo(new File(filePath + "/" + savedName));
+            gitContribution.transferTo(new File(filePath2 + "/" + savedName2));
             model.addAttribute("message", "게시글이 저장 되었습니다.");
 
             BoardDTO boardDTO = new BoardDTO((String) session.getAttribute("userEmail"), title, threePoem, salary, path, path2);
