@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>SIGNUP</title>
+    <link type="text/css" rel="stylesheet" href="/css/user.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 </head>
 <script>
     //가입실패시 메시지 출력
@@ -25,48 +29,53 @@
         document.getElementById("submitButton").disabled = true;
     }
 </script>
-<body>
+<body class="back">
+<div class="wrapper fadeInDown">
+    <h2 class="active"> SIGN UP </h2>
+    <br>
 
-<h1 align="center">SIGNUP</h1>
-<form align="center" action="/account/signup" method="post">
-    <!-- 이메일 입력 필드 -->
-    Email: <input type="text" name="userEmail" id="email">
-    <button type="button" id="checkEmailButton" onclick="checkEmail()">중복 확인</button><br>
-    <!-- 비밀번호 입력 필드 -->
-    Password: <input type="password" name="userPwd" id="pwd"><br>
-    <!-- 비밀번호 확인 입력 필드 -->
-    Repeat password: <input type="password" name="userCheckPwd" id="checkPwd"><br>
-    <!-- 이름 입력 필드 -->
-    Name: <input type="text" name="userName" id="name" ><br>
-    <!-- 전화번호 입력 필드 -->
-    Phone Number: <input type="text" name="userPhone" id="phone" ><br>
-    <!-- 생년월일 입력 필드 -->
-    Birth: <input type="date" name="userBirth" id="birth"><br>
+    <form align="center" action="/account/signup" method="post">
+        <!-- 이메일 입력 필드 -->
+        <input type="text" id="email" class="fadeIn second" name="userEmail" placeholder="Enter your email"><br>
+        <button type="button" class="fadeIn underlineHover2" id="checkEmailButton" onclick="checkEmail()">
+            DUPLICATE</button>
+        <br>
+        <!-- 비밀번호 입력 필드 -->
+        <input type="password" id="pwd" class="fadeIn third" name="userPwd" placeholder="Enter your password"><br>
+        <!-- 비밀번호 확인 입력 필드 -->
+        <input type="password" id="checkPwd" class="fadeIn third" name="userCheckPwd" placeholder="Enter your password"><br>
+        <!-- 이름 입력 필드 -->
+        <input type="text" id="name" class="fadeIn third" name="userName" placeholder="Enter your name"><br>
+        <!-- 전화번호 입력 필드 -->
+        <input type="text" id="phone" class="fadeIn third" name="userPhone" style="margin-bottom: 10px;"placeholder="010-1234-5678"><br>
+        <!-- 생년월일 입력 필드 -->
+        <input type="date" id="birth" class="fadeIn third" name="userBirth"><br>
 
-    <!--    <th:block th:each="index: ${#numbers.sequence(1, 3)}">-->
-<!--        <label th:for="'userTech' + ${index}">Technology Stack<span th:text="${index}"></span> | 숙련도</label><br>-->
-<!--        <select th:for="'userTech' + ${index}" name="userTech">-->
-<!--            <option th:each="tech : ${techOptions}"-->
-<!--                    th:text="${tech}"-->
-<!--                    th:value="${tech == '기술 스택을 선택해주세요.'? '없음' : tech}"-->
-<!--                    th:selected="${tech == '기술 스택을 선택해주세요.'}?'selected'">-->
-<!--            </option>-->
-<!--        </select>-->
-<!--        <select style="width: 100px" th:id="'proficiency' + ${index}" name="proficiency">-->
-<!--            <option th:each="p : ${T(com.onemorething.layered.menu.domain.aggregate.enumtype.Proficiency).values()}"-->
-<!--                    th:text="${p}"-->
-<!--                    th:value="${p}">-->
-<!--            </option>-->
-<!--        </select>-->
-<!--        <br>-->
-<!--    </th:block>-->
-<!--    회원가입 버튼-->
-    <input type="submit" value="SIGNUP" id="submitButton" disabled>
-<!--    리셋버튼-->
-    <button type="button" onclick="resetForm()">RESET</button>
-<!--    메인으로 이동-->
-    <button type="button" onclick="location.href='/'">HOME</button>
-</form>
+        <!--    <th:block th:each="index: ${#numbers.sequence(1, 3)}">-->
+        <!--        <label th:for="'userTech' + ${index}">Technology Stack<span th:text="${index}"></span> | 숙련도</label><br>-->
+        <!--        <select th:for="'userTech' + ${index}" name="userTech">-->
+        <!--            <option th:each="tech : ${techOptions}"-->
+        <!--                    th:text="${tech}"-->
+        <!--                    th:value="${tech == '기술 스택을 선택해주세요.'? '없음' : tech}"-->
+        <!--                    th:selected="${tech == '기술 스택을 선택해주세요.'}?'selected'">-->
+        <!--            </option>-->
+        <!--        </select>-->
+        <!--        <select style="width: 100px" th:id="'proficiency' + ${index}" name="proficiency">-->
+        <!--            <option th:each="p : ${T(com.onemorething.layered.menu.domain.aggregate.enumtype.Proficiency).values()}"-->
+        <!--                    th:text="${p}"-->
+        <!--                    th:value="${p}">-->
+        <!--            </option>-->
+        <!--        </select>-->
+        <!--        <br>-->
+        <!--    </th:block>-->
+        <!--    회원가입 버튼-->
+        <input type="submit" class="fadeIn fourth" value="SIGN UP" id="submitButton" disabled  style="margin-top: 10px;"><br>
+        <!--    리셋버튼-->
+    </form>
+        <button onclick="resetForm()"  class="fadeIn underlineHover" style= "color: #888888;">RESET</button>
+        <!--    메인으로 이동-->
+        <button class="fadeIn underlineHover" style="color: #888888" onclick="location.href='/'">메인으로</button>
+</div>
 </body>
 <script>
 
@@ -85,14 +94,14 @@
             },
             body: JSON.stringify(requestBody) // 요청 본문에 JSON 형식의 데이터를 문자열로 변환하여 설정
         })
-            .then(function(response) {
+            .then(function (response) {
                 if (response.ok) {
                     return response.text(); // 응답 본문을 텍스트로 추출하여 반환
                 } else {
                     throw new Error("이메일 중복 조회에 실패하였습니다."); // 응답이 실패한 경우 에러 throw
                 }
             })
-            .then(function(result) {
+            .then(function (result) {
                 if (result === "1") {
                     // 이메일 중복이면 처리
                     alert("중복된 이메일입니다.");
@@ -106,7 +115,7 @@
                     alert(result);
                 }
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 alert(error.message); // 에러 메시지 출력
             });
     }
