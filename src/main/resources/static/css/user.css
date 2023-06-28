@@ -313,7 +313,7 @@ input[type=password]::placeholder {
 #birth {width: 350px;
     height: 50px;
     text-align: center;
-    background-color: #f6f6f6;;
+    background-color: #f6f6f6;
     border: none;
     color: #cccccc;
 
@@ -325,4 +325,24 @@ input[type=password]::placeholder {
     border: #888888 solid 1px;
     margin-left: 250px;
 
+}
+.stackBox{
+    width: 350px;
+    background-color: #f6f6f6;
+
+    position: relative;
+    left: 20px;
+
+}
+.stack {
+    background-color: #f6f6f6;
+    border: none;
+    color: #cccccc;
+    /*width: 180px;*/
+}
+.stack1{
+    /*width: 50px;*/
+    background-color: #f6f6f6;
+    border: none;
+    color: #cccccc;
 }
