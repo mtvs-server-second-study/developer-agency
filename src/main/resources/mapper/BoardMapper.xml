@@ -3,19 +3,44 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="BoardRepository">
-    <resultMap id="BoardResultMap" type="com.onemorething.layered.menu.domain.aggregate.entity.Board">
+    <resultMap id="BoardResultMap" type="com.onemorething.layered.menu.domain.aggregate.entity.BoardAndUserAndSkill">
+        <id property="boardSeq" column="boardSeq"></id>
         <result property="title" column="title" />
         <result property="threePoem" column="threePoem" />
         <result property="salary" column="salary" />
         <result property="profile" column="profile" />
         <result property="gitContribution" column="gitContribution" />
-        <association property="userEmail" resultMap="UserRepository.UserResultMap" />
+        <association property="user" resultMap="UserResultMap" />
+        <collection property="userSkills" resultMap="SkillResultMap"/>
+    </resultMap>
+    
+    <resultMap id="UserResultMap" type="com.onemorething.layered.menu.domain.aggregate.entity.User">
+        <id property="userEmail" column="userEmail"></id>
+        <result property="userName" column="userName"></result>
+    </resultMap>
+    <resultMap id="SkillResultMap" type="com.onemorething.layered.menu.domain.aggregate.entity.SkillAndTech">
+        <result property="proficiency" column="proficiency"></result>
+        <association property="tech" resultMap="TechResultMap"></association>
+    </resultMap>
+    <resultMap id="TechResultMap" type="com.onemorething.layered.menu.domain.aggregate.entity.Tech">
+        <id property="techSeq" column="techSeq"></id>
+        <result property="techName" column="techName"></result>
     </resultMap>
 
     <insert id="save" parameterType="com.onemorething.layered.menu.domain.aggregate.entity.Board">
-        INSERT INTO INTRODUCE (userEmail, title, threePoem, salary, profile, gitContribution)
+        INSERT INTO BOARD (userEmail, title, threePoem, salary, profile, gitContribution)
         VALUES (#{userEmail}, #{title}, #{threePoem}, #{salary}, #{profile}, #{gitContribution})
     </insert>
+
+    <select id="getBoardList" resultType="com.onemorething.layered.menu.domain.aggregate.entity.BoardAndUserAndSkill">
+        SELECT b.boardSeq, b.title, b.threePoem, b.salary, b.profile, b.gitContribution,
+               b.userEmail, u.userName,
+               us.techSeq, ts.techName, us.proficiency
+        FROM Board b
+                 JOIN User u ON b.userEmail = u.userEmail
+                 LEFT JOIN UserSkill us ON u.userEmail = us.userEmail
+                 LEFT JOIN TechStack ts ON us.techSeq = ts.techSeq
+    </select>
 
 
 </mapper>

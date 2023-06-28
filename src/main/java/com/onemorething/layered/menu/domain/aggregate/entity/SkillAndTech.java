@@ -7,7 +7,7 @@ import java.util.List;
 public class SkillAndTech {
 
     private String userEmail;
-    private int techSeq;
+    private Tech tech;
     private List<String> userTech;
     private List<Proficiency> proficiency;
     private String userSkill;
@@ -15,9 +15,9 @@ public class SkillAndTech {
 
     public SkillAndTech() {}
 
-    public SkillAndTech(String userEmail, int techSeq, List<String> userTech, List<Proficiency> proficiency, String userSkill, Proficiency userProficiency) {
+    public SkillAndTech(String userEmail, Tech tech, List<String> userTech, List<Proficiency> proficiency, String userSkill, Proficiency userProficiency) {
         this.userEmail = userEmail;
-        this.techSeq = techSeq;
+        this.tech = tech;
         this.userTech = userTech;
         this.proficiency = proficiency;
         this.userSkill = userSkill;
@@ -32,8 +32,12 @@ public class SkillAndTech {
         this.userEmail = userEmail;
     }
 
-    public int getTechSeq() {
-        return techSeq;
+    public Tech getTech() {
+        return tech;
+    }
+
+    public void setTech(Tech tech) {
+        this.tech = tech;
     }
 
     public List<String> getUserTech() {
@@ -56,10 +60,16 @@ public class SkillAndTech {
         return userSkill;
     }
 
+    public void setUserSkill(String userSkill) {
+        this.userSkill = userSkill;
+    }
 
     public Proficiency getUserProficiency() {
         return userProficiency;
     }
 
+    public void setUserProficiency(Proficiency userProficiency) {
+        this.userProficiency = userProficiency;
+    }
 }
 
