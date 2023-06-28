@@ -32,13 +32,7 @@ public class AccountController {
     @GetMapping("/signup")
     public String signUpFrom(Model model) {
 
-        String[] techOptions = {
-                "기술 스택을 선택해주세요.", "Java", "JavaScript", "Python", "Kotlin", "Swift", "TypeScript",
-                "C", "C++", "ReactJS", "Redux", "VueJS", "AngularJS", "NextJS",
-                "Spring", "NodeJS", "NestJS", "Unity", "Flask", "MySQL", "MongoDB"
-        };
-
-        model.addAttribute("techOptions", techOptions);
+        model.addAttribute("techList", signUpService.getTechList());
 
         return "account/signup";
     }
@@ -49,22 +43,18 @@ public class AccountController {
         return "account/signupresult";
     }
 
-    /* 회원가입에서 입력 값 넘기는 매핑 */
     @PostMapping("/signup")
-    public String signUp(@ModelAttribute("userDTO") UserDTO userDTO, HttpSession session, RedirectAttributes rttr) {
-        try { //(@ModelAttribute("userDTO") 생략가능한 어노테이션
+    public String signUp(@ModelAttribute("userDTO") UserDTO userDTO, HttpSession session, RedirectAttributes rttr, Model model) {
+        try {
 
-            //DTO를 이용한 값 전달 (로직실행), entity로 변환후 DB INSERT
             signUpService.signUp(userDTO);
 
-            //리다이렉트 (회원가입 결과 페이지)
             return "redirect:/account/signupresult";
         } catch (IllegalArgumentException e) {
 
-            //오류 발생시 회원가입 로직에서 에러메시지 를 받아옴
+            model.addAttribute("techList", signUpService.getTechList());
             rttr.addFlashAttribute("message", e.getMessage());
 
-            //회원가입 페이지로  alert 메시지 표출후 리다이렉트
             return "redirect:/account/signup";
         }
     }
@@ -73,15 +63,14 @@ public class AccountController {
     public String checkEmailButton(@RequestBody UserDTO userDTO) {
 
         try {
-            //이메일 확인 결과값을 result에 저장
             int result = signUpService.checkEmail(userDTO);
 
-            if (result == 1) { //중복아이디가 있을경우
+            if (result == 1) {
                 return "1";
-            } else { //없을경우
+            } else {
                 return "0";
             }
-        }catch(IllegalArgumentException e){ //오류처리
+        }catch(IllegalArgumentException e){
             return e.getMessage();
         }
     }
@@ -91,27 +80,22 @@ public class AccountController {
     @PostMapping("/login")
         public String loginMenu(HttpSession session, RedirectAttributes rttr, UserDTO userDTO) {
 
-        // 로그인 처리
         try {
             userDTO = userMapper.toDTO(loginService.LogIn(userDTO));
 
-            // 로그인 성공한 경우 세션에 사용자 정보 저장
             session.setAttribute("userEmail", userDTO.getUserEmail());
             session.setAttribute("userName", userDTO.getUserName());
 
-            // 필요한 경우, 환영 메시지 등을 세션에 저장
             return "redirect:/";
 
         } catch (IllegalArgumentException e) {
 
-            // 로그인 실패한 경우
             rttr.addFlashAttribute("message", e.getMessage());
 
             return "redirect:/account/login";
         }
     }
 
-    /* 로그아웃 */
     @GetMapping("/logout")
     public String logout(HttpSession session) {
 

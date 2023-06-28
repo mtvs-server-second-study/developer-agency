@@ -19,12 +19,9 @@ public class BoardService {
         this.boardRepository = boardRepository;
         this.validService = validService;
     }
+  
     public void fileUpload(BoardDTO boardDTO) {
-
-        // 검증 로직
         validService.validateInput(boardDTO);
-
-        // entity 변환
         Board newBoard = new Board(boardDTO.getUserEmail(), boardDTO.getTitle(), boardDTO.getThreePoem(),
                 boardDTO.getSalary(), boardDTO.getProfile(), boardDTO.getGitContribution());
 
