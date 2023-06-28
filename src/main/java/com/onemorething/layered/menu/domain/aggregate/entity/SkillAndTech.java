@@ -36,10 +36,6 @@ public class SkillAndTech {
         return techSeq;
     }
 
-    public void setTechSeq(int techSeq) {
-        this.techSeq = techSeq;
-    }
-
     public List<String> getUserTech() {
         return userTech;
     }
@@ -60,16 +56,10 @@ public class SkillAndTech {
         return userSkill;
     }
 
-    public void setUserSkill(String userSkill) {
-        this.userSkill = userSkill;
-    }
 
     public Proficiency getUserProficiency() {
         return userProficiency;
     }
 
-    public void setUserProficiency(Proficiency userProficiency) {
-        this.userProficiency = userProficiency;
-    }
 }
 

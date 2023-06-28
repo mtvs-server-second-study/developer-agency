@@ -6,6 +6,5 @@ import org.springframework.stereotype.Component;
 
 @Component
 public interface SkillRepository {
-
     int insertSkill(Skill skill);
 }
