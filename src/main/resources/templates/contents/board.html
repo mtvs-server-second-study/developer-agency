@@ -11,24 +11,23 @@
     <div class="mb-3">
         <img id="image-preview" class="img-thumbnail" width="400" height="400" alt="프로필 미리보기"><br>
         <label for="formFile" class="form-label">프로필</label>
-        <input class="form-control" type="file" id="formFile" name="profile">
+        <input class="form-control" type="file" id="formFile" name="profile" required>
     </div>
     <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">희망 연봉</label>
-        <input type="number" class="form-control-sm" id="exampleFormControlInput1" min="2000" step="100" name="salary"><label>만원</label>
+        <input type="number" class="form-control-sm" id="exampleFormControlInput1" min="2000" step="100" name="salary" required><label>만원</label>
     </div>
     <div class="mb-3">
         <label for="exampleFormControlInput2" class="form-label">나를 표현하는 한마디</label>
-        <input type="text" class="form-control" id="exampleFormControlInput2" name="title" placeholder="인생 명언을 작성해주세요!">
+        <input type="text" class="form-control" id="exampleFormControlInput2" name="title" placeholder="인생 명언을 작성해주세요!" required>
     </div>
     <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label">삼행시</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="threePoem" placeholder="본인을 어필할 수 있게 삼행시를 작성해주세요!"></textarea>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="threePoem" placeholder="본인을 어필할 수 있게 삼행시를 작성해주세요!" required></textarea>
     </div>
-
     <div class="mb-3">
         <label for="formFile" class="form-label">깃허브 잔디</label>
-        <input class="form-control" type="file" name="git-contribution">
+        <input class="form-control" type="file" name="git-contribution" required>
     </div>
     <input type="submit">
 </form>
