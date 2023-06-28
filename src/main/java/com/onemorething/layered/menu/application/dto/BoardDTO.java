@@ -9,12 +9,38 @@ public class BoardDTO {
     private String profile;         /* 프로필 사진 경로 */
     private String gitContribution; /* 깃허브 잔디 사진 경로 */
 
+    public BoardDTO() {}
+
     public BoardDTO(String userEmail, String title, String threePoem, int salary, String profile, String gitContribution) {
         this.userEmail = userEmail;
         this.title = title;
         this.threePoem = threePoem;
         this.salary = salary;
         this.profile = profile;
+        this.gitContribution = gitContribution;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setThreePoem(String threePoem) {
+        this.threePoem = threePoem;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+
+    public void setProfile(String profile) {
+        this.profile = profile;
+    }
+
+    public void setGitContribution(String gitContribution) {
         this.gitContribution = gitContribution;
     }
 

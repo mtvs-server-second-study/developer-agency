@@ -1,5 +1,6 @@
 package com.onemorething.layered.menu.domain.service.common;
 
+import com.onemorething.layered.menu.application.dto.BoardDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.regex.Matcher;
@@ -47,5 +48,24 @@ public class ValidService {
         return "정상";
     }
 
+    /* 입력 값의 존재 여부 확인 */
+    public void validateInput(BoardDTO boardDTO) {
+        validateStringNotEmpty(boardDTO.getTitle(), "인생 명언을 작성해주세요");
+        validateStringNotEmpty(boardDTO.getThreePoem(), "삼행시를 작성해주세요");
+        validateSalary(boardDTO.getSalary());
+        validateStringNotEmpty(boardDTO.getProfile(), "프로필 사진을 등록해주세요");
+        validateStringNotEmpty(boardDTO.getGitContribution(), "깃허브 잔디 사진을 등록해주세요");
+    }
 
+    private void validateStringNotEmpty(String value, String errorMessage) {
+        if (value == null || "".equals(value)) {
+            throw new IllegalArgumentException(errorMessage);
+        }
+    }
+
+    private void validateSalary(int salary) {
+        if (salary <= 0 || salary < 2000) {
+            throw new IllegalArgumentException("희망 연봉을 입력해주세요. 최소값은 2,000만 원입니다.");
+        }
+    }
 }

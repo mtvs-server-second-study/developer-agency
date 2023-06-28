@@ -27,7 +27,7 @@
 
     <!-- 설명. 글쓰기 저장 -->
     <insert id="save" parameterType="com.onemorething.layered.menu.domain.aggregate.entity.Board">
-        INSERT INTO INTRODUCE (userEmail, title, threePoem, salary, profile, gitContribution)
+        INSERT INTO BOARD (userEmail, title, threePoem, salary, profile, gitContribution)
         VALUES (#{userEmail}, #{title}, #{threePoem}, #{salary}, #{profile}, #{gitContribution})
     </insert>
 
