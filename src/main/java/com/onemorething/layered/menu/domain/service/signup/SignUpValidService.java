@@ -36,9 +36,6 @@ public class SignUpValidService {
     public String checkValidPhone(String userPhone) {
 
         String patternPhone = "^01([0|1|6|7|8|9])-([0-9]{3,4})-([0-9]{4})$";
-        /*
-            01로 시작하고 (0,1,6,7,8,9)중 하나의 숫자  - (0~9)중 3개 혹은 4개숫자 - (0~9)중 4개 숫자
-         */
         if (userPhone == "" || userPhone == null) {//null값 처리
             throw new IllegalArgumentException("핸드폰 번호를 입력해 주세요.");
         } else if (!userPhone.matches(patternPhone)) { //패턴과 일치하지 않을경우
@@ -48,7 +45,6 @@ public class SignUpValidService {
         }
     }
 
-    /* 설명. 비밀번호 재확인 로직*/
     public String checkPwd(String pwd1, String pwd2) {
 
         if (!(pwd1.trim().equals(pwd2))) {

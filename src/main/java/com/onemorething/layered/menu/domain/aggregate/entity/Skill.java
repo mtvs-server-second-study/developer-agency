@@ -28,15 +28,9 @@ public class Skill {
         return userTech;
     }
 
-    public void setUserTech(String userTech) {
-        this.userTech = userTech;
-    }
 
     public Proficiency getUserProficiency() {
         return userProficiency;
     }
 
-    public void setUserProficiency(Proficiency userProficiency) {
-        this.userProficiency = userProficiency;
-    }
 }

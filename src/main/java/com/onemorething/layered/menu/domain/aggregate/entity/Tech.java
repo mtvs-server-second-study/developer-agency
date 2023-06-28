@@ -16,15 +16,8 @@ public class Tech {
         return techSeq;
     }
 
-    public void setTechSeq(int techSeq) {
-        this.techSeq = techSeq;
-    }
-
     public String getTechName() {
         return techName;
     }
 
-    public void setTechName(String techName) {
-        this.techName = techName;
-    }
 }

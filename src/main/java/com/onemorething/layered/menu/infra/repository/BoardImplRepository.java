@@ -23,9 +23,7 @@ public class BoardImplRepository implements BoardRepository {
     public void save(Board board) {
 
         int result = sqlSession.insert("BoardRepository.save", board);
-        if (result != 1) {      // DB 저장 실패시 0 성공시 1 리턴
-            
-            // 게시글 등록 실패 예외처리
+        if (result != 1) {
             throw new IllegalArgumentException("게시글 등록 실패, 관리자에게 문의하세요.");
         }
     }
