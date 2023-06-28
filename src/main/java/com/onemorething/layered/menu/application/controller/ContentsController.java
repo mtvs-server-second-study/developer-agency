@@ -18,12 +18,12 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping("/contents/*")
-public class BoardController {
+public class ContentsController {
 
     private BoardService boardService;
 
     @Autowired
-    public BoardController(BoardService boardService) {
+    public ContentsController(BoardService boardService) {
         this.boardService = boardService;
     }
 
@@ -94,4 +94,7 @@ public class BoardController {
 
         return "contents/result";
     }
+
+    @GetMapping("detail")
+    public void detail() {}
 }
