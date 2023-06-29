@@ -1,6 +1,6 @@
 package com.onemorething.layered.menu.domain.service.login.signup;
 
-import com.onemorething.layered.menu.domain.service.signup.SignUpValidService;
+import com.onemorething.layered.menu.domain.service.signup.SignUpDomainService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -8,12 +8,12 @@ import org.junit.jupiter.api.Test;
 
 public class SignUpVaildPhoneTests {
 
-    private SignUpValidService signUpValidService;
+    private SignUpDomainService signUpDomainService;
     private Exception e;
 
     @BeforeEach
     public void setUp() {
-        this.signUpValidService = new SignUpValidService();
+        this.signUpDomainService = new SignUpDomainService();
         this.e=new Exception();
     }
     //검증내용
@@ -30,7 +30,7 @@ public class SignUpVaildPhoneTests {
         String phone1 = "010-1234-5678";
 
         //when
-        String result = signUpValidService.checkValidPhone(phone1);
+        String result = signUpDomainService.checkValidPhone(phone1);
 
         //then
         Assertions.assertEquals("정상",result);
@@ -48,7 +48,7 @@ public class SignUpVaildPhoneTests {
         //when,then
         e= Assertions.assertThrows(
                 IllegalArgumentException.class,
-                () -> signUpValidService.checkValidPhone(phone1)
+                () -> signUpDomainService.checkValidPhone(phone1)
         );
         System.out.println(e);
     }
@@ -67,31 +67,31 @@ public class SignUpVaildPhoneTests {
         //when, then
         e= Assertions.assertThrows(
                 IllegalArgumentException.class,
-                () -> signUpValidService.checkValidPhone(phone1)
+                () -> signUpDomainService.checkValidPhone(phone1)
         );
         System.out.println(e);
 
         e= Assertions.assertThrows(
                 IllegalArgumentException.class,
-                () -> signUpValidService.checkValidPhone(phone2)
+                () -> signUpDomainService.checkValidPhone(phone2)
         );
         System.out.println(e);
 
         e= Assertions.assertThrows(
                 IllegalArgumentException.class,
-                () -> signUpValidService.checkValidPhone(phone3)
+                () -> signUpDomainService.checkValidPhone(phone3)
         );
         System.out.println(e);
 
         e= Assertions.assertThrows(
                 IllegalArgumentException.class,
-                () -> signUpValidService.checkValidPhone(phone4)
+                () -> signUpDomainService.checkValidPhone(phone4)
         );
         System.out.println(e);
 
         e= Assertions.assertThrows(
                 IllegalArgumentException.class,
-                () -> signUpValidService.checkValidPhone(phone5)
+                () -> signUpDomainService.checkValidPhone(phone5)
         );
         System.out.println(e);
 

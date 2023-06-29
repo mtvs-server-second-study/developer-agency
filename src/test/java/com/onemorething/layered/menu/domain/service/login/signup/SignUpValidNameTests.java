@@ -1,6 +1,6 @@
 package com.onemorething.layered.menu.domain.service.login.signup;
 
-import com.onemorething.layered.menu.domain.service.signup.SignUpValidService;
+import com.onemorething.layered.menu.domain.service.signup.SignUpDomainService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -8,12 +8,12 @@ import org.junit.jupiter.api.Test;
 
 public class SignUpValidNameTests {
 
-    private SignUpValidService signUpValidService;
+    private SignUpDomainService signUpDomainService;
     private Exception e;
 
     @BeforeEach
     public void setUp() {
-        this.signUpValidService = new SignUpValidService();
+        this.signUpDomainService = new SignUpDomainService();
         this.e=new Exception();
     }
     //검증내용
@@ -30,7 +30,7 @@ public class SignUpValidNameTests {
         String userName1 = "홍길동";
 
         //when
-        String result = signUpValidService.checkValidName(userName1);
+        String result = signUpDomainService.checkValidName(userName1);
 
         //then
         Assertions.assertEquals("정상",result);
@@ -48,7 +48,7 @@ public class SignUpValidNameTests {
         //when,then
         e= Assertions.assertThrows(
                 IllegalArgumentException.class,
-                () -> signUpValidService.checkValidName(userName1)
+                () -> signUpDomainService.checkValidName(userName1)
         );
         System.out.println(e);
     }
@@ -64,13 +64,13 @@ public class SignUpValidNameTests {
         //when,then
         e= Assertions.assertThrows(
                 IllegalArgumentException.class,
-                () -> signUpValidService.checkValidName(userName1)
+                () -> signUpDomainService.checkValidName(userName1)
         );
         System.out.println(e);
 
         e= Assertions.assertThrows(
                 IllegalArgumentException.class,
-                () -> signUpValidService.checkValidName(userName2)
+                () -> signUpDomainService.checkValidName(userName2)
         );
         System.out.println(e);
     }
@@ -87,19 +87,19 @@ public class SignUpValidNameTests {
         //when, then
         e= Assertions.assertThrows(
                 IllegalArgumentException.class,
-                () -> signUpValidService.checkValidName(userName1)
+                () -> signUpDomainService.checkValidName(userName1)
         );
         System.out.println(e);
 
         e= Assertions.assertThrows(
                 IllegalArgumentException.class,
-                () -> signUpValidService.checkValidName(userName2)
+                () -> signUpDomainService.checkValidName(userName2)
         );
         System.out.println(e);
 
         e= Assertions.assertThrows(
                 IllegalArgumentException.class,
-                () -> signUpValidService.checkValidName(userName3)
+                () -> signUpDomainService.checkValidName(userName3)
         );
         System.out.println(e);
 

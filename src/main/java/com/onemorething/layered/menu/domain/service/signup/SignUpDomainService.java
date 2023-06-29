@@ -1,7 +1,6 @@
 package com.onemorething.layered.menu.domain.service.signup;
 
 
-import com.onemorething.layered.menu.application.dto.UserDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -9,7 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 @Service
-public class SignUpValidService {
+public class SignUpDomainService {
 
     public String checkValidName(String userName) {
 

@@ -89,4 +89,14 @@ public class ContentsController {
 
     @GetMapping("detail")
     public void detail() {}
+
+    @GetMapping("detail2")
+    public void detail2() {}
+
+    @GetMapping("detail3")
+    public void detail3() {}
+    @GetMapping("detail4")
+    public void detail4() {}
+    @GetMapping("detail5")
+    public void detail5() {}
 }

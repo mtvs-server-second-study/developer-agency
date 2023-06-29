@@ -6,7 +6,7 @@ import com.onemorething.layered.menu.application.service.mapper.UserMapper;
 import com.onemorething.layered.menu.domain.aggregate.entity.User;
 import com.onemorething.layered.menu.domain.repository.UserRepository;
 import com.onemorething.layered.menu.domain.service.common.ValidService;
-import com.onemorething.layered.menu.domain.service.signup.SignUpValidService;
+import com.onemorething.layered.menu.domain.service.signup.SignUpDomainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,20 +15,20 @@ public class LoginService {
 
     private final ValidService validService;
     private final UserRepository userRepository;
-    private final SignUpValidService signUpValidService;
+    private final SignUpDomainService signUpDomainService;
     private final UserMapper userMapper = new UserMapper();
 
     @Autowired
-    public LoginService(ValidService validService, UserRepository userRepository, SignUpValidService signUpValidService) {
+    public LoginService(ValidService validService, UserRepository userRepository, SignUpDomainService signUpDomainService) {
         this.validService = validService;
         this.userRepository = userRepository;
-        this.signUpValidService= signUpValidService;
+        this.signUpDomainService = signUpDomainService;
     }
 
     public User findId(UserDTO userDTO) {
 
-        signUpValidService.checkValidName(userDTO.getUserName());
-        signUpValidService.checkValidPhone(userDTO.getUserPhone());
+        signUpDomainService.checkValidName(userDTO.getUserName());
+        signUpDomainService.checkValidPhone(userDTO.getUserPhone());
 
         User user = userMapper.toEntity(userDTO);
 
@@ -47,8 +47,8 @@ public class LoginService {
     public User findPwd(UserDTO userDTO) {
 
         validService.checkValidEmail(userDTO.getUserEmail());
-        signUpValidService.checkValidName(userDTO.getUserName());
-        signUpValidService.checkValidPhone(userDTO.getUserPhone());
+        signUpDomainService.checkValidName(userDTO.getUserName());
+        signUpDomainService.checkValidPhone(userDTO.getUserPhone());
 
         User user = userMapper.toEntity(userDTO);
 

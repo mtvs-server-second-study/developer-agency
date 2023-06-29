@@ -1,6 +1,5 @@
 package com.onemorething.layered.menu.domain.service.signup;
 
-import com.onemorething.layered.menu.application.service.SignUpService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -16,13 +15,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SignUpValidTechTest {
 
-    private SignUpValidService signUpValidService;
+    private SignUpDomainService signUpDomainService;
     private Exception e;
 
     @BeforeEach
     public void setUp() {
         this.e = new Exception();
-        this.signUpValidService = new SignUpValidService();
+        this.signUpDomainService = new SignUpDomainService();
     }
 
     @DisplayName("기술스택 정상 작동 확인")
@@ -33,7 +32,7 @@ class SignUpValidTechTest {
         List<String> techList = Stream.of("Java", "react", "MuSQL").collect(Collectors.toList());
 
         // when
-        String result = signUpValidService.checkDuplicateTech(techList);
+        String result = signUpDomainService.checkDuplicateTech(techList);
 
         // then
         Assertions.assertEquals("정상", result);
@@ -50,7 +49,7 @@ class SignUpValidTechTest {
         // when, then
         e = Assertions.assertThrows(
                 IllegalArgumentException.class,
-                () -> signUpValidService.checkDuplicateTech(techList)
+                () -> signUpDomainService.checkDuplicateTech(techList)
         );
         assertEquals(e.getMessage(), "기술 스택이 중복됩니다.");
     }
@@ -63,7 +62,7 @@ class SignUpValidTechTest {
         List<String> techList = new ArrayList<>( List.of("Java", "없음", "없음"));
 
         // when
-        String result = signUpValidService.checkDuplicateTech(techList);
+        String result = signUpDomainService.checkDuplicateTech(techList);
         System.out.println(result);
 
         // then
