@@ -13,9 +13,7 @@ public class SignUpDomainServiceTests {
     private UserRepository userRepository;
     private SkillRepository skillRepository;
     private TechRepository techRepository;
-    // 검증로직 (공통)
     private ValidService validService;
-    //검증로직(회원가입용 비밀번호 재입력 검증)
     private SignUpDomainService signUpDomainService;
     private Exception e;
 
