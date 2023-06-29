@@ -26,32 +26,6 @@
             }
         }
 
-        /*.b-example-divider {*/
-        /*    height: 3rem;*/
-        /*    background-color: rgba(0, 0, 0, .1);*/
-        /*    border: solid rgba(0, 0, 0, .15);*/
-        /*    border-width: 1px 0;*/
-        /*    box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);*/
-        /*}*/
-
-        /*.b-example-vr {*/
-        /*    flex-shrink: 0;*/
-        /*    width: 1.5rem;*/
-        /*    height: 100vh;*/
-        /*}*/
-
-        /*.bi {*/
-        /*    vertical-align: -.125em;*/
-        /*    fill: currentColor;*/
-        /*}*/
-
-        /*.nav-scroller {*/
-        /*    position: relative;*/
-        /*    z-index: 2;*/
-        /*    height: 2.75rem;*/
-        /*    overflow-y: hidden;*/
-        /*}*/
-
         .nav-scroller .nav {
             display: flex;
             flex-wrap: nowrap;
@@ -86,12 +60,12 @@
                 </div>
             </th:block>
 
-            <th:block th:if="${session.userEmail != null }">
-                <div class="d-grid gap-2 d-md-block">
-                    <a th:Text="${ session.message }"></a>
-                    <button onclick="location.href='/account/logout'" class="btn btn-outline-danger" type="button">LOGOUT</button>
-                </div>
-            </th:block>
+        <th:block th:if="${session.userEmail != null }">
+            <div class="d-grid gap-2 d-md-block" style="margin-right: 30px;">
+                <a th:Text="${ session.message }"></a>
+                <button onclick="location.href='/account/logout'" class="btn btn-outline-danger" type="button">LOGOUT</button>
+            </div>
+        </th:block>
 <!--        </div>-->
     </div>
 </header>
@@ -123,21 +97,6 @@
                                     <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='contents/detail'">View</button>
                                 </div>
                                 <small class="text-muted">관리자</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img class="bd-placeholder-img card-img-top" width="100%" height="300" src="https://avatars.githubusercontent.com/u/122511826?v=4"/>
-
-                        <div class="card-body">
-                            <h5 class="card-text" style="font-size: small">"선택과 집중"</h5><br>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='contents/detail'">View</button>
-                                </div>
-                                <small class="text-muted">남효정</small>
                             </div>
                         </div>
                     </div>

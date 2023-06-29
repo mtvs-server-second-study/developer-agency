@@ -76,7 +76,6 @@
 
 <header>
     <div class="navbar" style="background-color: #56baed; display: flex; height: 70px;">
-<!--        <div class="container">-->
             <img class="nav-img" onclick="location.href='/main'" src="https://github.com/mtvs-server-second-study/developer-agency/assets/134987216/70d9d33e-fa97-49fa-824f-c1cecaeec403"
                 style="margin-left: 800px">
             <th:block th:if="${session.userEmail == null }">
@@ -87,12 +86,11 @@
             </th:block>
 
             <th:block th:if="${session.userEmail != null }">
-                <div class="d-grid gap-2 d-md-block">
+                <div class="d-grid gap-2 d-md-block" style="margin-right: 30px;">
                     <a th:Text="${ session.message }"></a>
                     <button onclick="location.href='/account/logout'" class="btn btn-outline-danger" type="button">LOGOUT</button>
                 </div>
             </th:block>
-<!--        </div>-->
     </div>
 </header>
 
