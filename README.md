@@ -112,7 +112,7 @@ For building and running the application you need:
     │      │  ├─css // CSS 보관폴더
     │      │  └─js //JS 보관폴더
     │      └─templates
-    │          ├─account //회원가입, 로그인 관련 ㅠㅔ이지
+    │          ├─account //회원가입, 로그인 관련 페이지
     │          └─contents // 게시물 관련 페이지
     └─test //Test 코드 구현
         └─java
